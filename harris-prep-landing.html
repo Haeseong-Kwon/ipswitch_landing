@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Harris Prep · 입스위치 단기유학 — 우리 아이가 적응하는 사이, 그 아이는 이미 배움에 몰입합니다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --red:#9B1C2E; --navy:#0C2340; --pale:#B8D4E8; --pale-l:#E8F2F9;
+  --charcoal:#2C2C2C; --gray:#F5F4F2; --gray-m:#E8E6E2; --gray-d:#9AA3AD; --white:#FFFFFF;
+  --accent:#2E6A9A;
+  --serif:'Cormorant Garamond',serif; --sans:'Montserrat',sans-serif; --num:'Inter',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);font-weight:400;background:var(--white);color:var(--charcoal);
+  line-height:1.8;font-size:17px;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased;}
+.f-num{font-family:var(--num);}
+a{color:inherit;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 6vw;}
+
+/* ---------- BUTTONS ---------- */
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-weight:600;
+  font-size:.92rem;letter-spacing:.01em;padding:.95rem 1.7rem;border-radius:2px;cursor:pointer;
+  text-decoration:none;border:1.5px solid transparent;transition:transform .15s ease,background .2s ease,color .2s ease,border-color .2s ease;white-space:nowrap;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--red);color:#fff;}
+.btn-primary:hover{background:#821522;}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy);}
+.btn-ghost:hover{background:var(--navy);color:#fff;}
+.btn-pale{background:var(--pale);color:var(--navy);}
+.btn-pale:hover{background:#9cc3de;}
+.btn .arw{font-family:var(--num);font-weight:400;}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);border-bottom:1px solid var(--gray-m);
+  display:flex;align-items:center;justify-content:space-between;padding:.85rem 6vw;}
+.nav-brand{font-family:var(--serif);font-size:1.05rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);}
+.nav-brand .amp{font-family:var(--num);color:var(--pale);font-weight:400;}
+.nav-cta{display:flex;gap:.7rem;align-items:center;}
+.nav-cta .btn{padding:.6rem 1.15rem;font-size:.8rem;}
+@media(max-width:720px){.nav-cta .btn-ghost{display:none;}}
+
+/* ---------- HERO ---------- */
+#hero{padding:9rem 0 5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--gray-m);}
+.topbar{position:absolute;top:0;left:0;right:0;height:4px;display:flex;}
+.topbar span:nth-child(1){flex:5;background:var(--navy);}
+.topbar span:nth-child(2){flex:1.2;background:var(--red);}
+.topbar span:nth-child(3){flex:1;background:var(--pale);}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;}
+.hero-eyebrow{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--charcoal);
+  opacity:.6;margin-bottom:1.6rem;font-weight:600;}
+.hero-h1{font-family:var(--serif);font-size:clamp(2.9rem,6vw,5.3rem);font-weight:400;color:var(--navy);
+  line-height:1.05;letter-spacing:-.01em;margin-bottom:1.4rem;}
+.hero-h1 em{font-style:italic;color:var(--red);}
+.hero-sub{font-size:1.12rem;color:var(--charcoal);line-height:1.85;max-width:520px;margin-bottom:2.2rem;}
+.hero-sub b{color:var(--navy);font-weight:600;}
+.hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.4rem;}
+.hero-trust{display:flex;gap:1.6rem;flex-wrap:wrap;border-top:1px solid var(--gray-m);padding-top:1.4rem;}
+.tr{display:flex;flex-direction:column;}
+.tr b{font-family:var(--num);font-size:1.15rem;color:var(--navy);line-height:1.2;}
+.tr span{font-size:.8rem;color:var(--charcoal);opacity:.65;}
+
+/* signature: divergence graphic */
+.diverge{width:100%;height:auto;}
+.dv-path-up{stroke:var(--navy);}
+.dv-path-down{stroke:var(--gray-d);stroke-dasharray:5 6;}
+.dv-node{fill:var(--red);}
+.dv-lab{font-family:var(--sans);font-size:12px;font-weight:600;fill:var(--navy);}
+.dv-lab-dim{font-family:var(--sans);font-size:12px;font-weight:500;fill:var(--gray-d);}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:2rem;}.hero-art{order:-1;max-width:420px;}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:6.5rem 0;border-bottom:1px solid var(--gray-m);}
+.eye{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);
+  font-weight:700;margin-bottom:1.1rem;display:block;}
+.h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3.3rem);font-weight:400;line-height:1.22;
+  color:var(--navy);margin-bottom:1rem;letter-spacing:-.01em;}
+.h2 em{font-style:italic;color:var(--red);}
+.sub{font-size:1.06rem;color:var(--charcoal);line-height:1.9;max-width:640px;margin-bottom:3rem;}
+.sub b{color:var(--navy);font-weight:600;}
+
+/* two-outcome split (agitation) */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+.col{border:1px solid var(--gray-m);padding:2rem 1.9rem;border-radius:3px;}
+.col.win{border-top:4px solid var(--navy);background:var(--pale-l);}
+.col.lose{border-top:4px solid var(--gray-d);background:var(--gray);}
+.col h4{font-family:var(--serif);font-size:1.4rem;font-weight:600;margin-bottom:1.1rem;}
+.col.win h4{color:var(--navy);}
+.col.lose h4{color:var(--gray-d);}
+.col ul{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.col li{font-size:.98rem;line-height:1.6;padding-left:1.5rem;position:relative;}
+.col.win li::before{content:'→';position:absolute;left:0;color:var(--navy);font-family:var(--num);font-weight:600;}
+.col.lose li::before{content:'×';position:absolute;left:0;color:var(--gray-d);font-family:var(--num);}
+.punch{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.6vw,2rem);color:var(--navy);
+  text-align:center;margin-top:2.6rem;line-height:1.6;}
+.punch b{font-style:normal;color:var(--red);}
+@media(max-width:720px){.split{grid-template-columns:1fr;}}
+
+/* mechanism 3-part */
+.mech{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+.step{border:1px solid var(--gray-m);border-radius:3px;padding:1.9rem 1.6rem;position:relative;}
+.step .no{font-family:var(--num);font-size:.72rem;font-weight:700;letter-spacing:.14em;color:var(--red);
+  text-transform:uppercase;margin-bottom:.9rem;display:block;}
+.step h4{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--navy);margin-bottom:.6rem;}
+.step p{font-size:.95rem;line-height:1.7;color:var(--charcoal);}
+.mech-arrow{text-align:center;font-family:var(--num);color:var(--pale);font-size:1.4rem;margin:0 auto;}
+@media(max-width:760px){.mech{grid-template-columns:1fr;}}
+
+/* course cards */
+.courses{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+.course{border:1px solid var(--gray-m);border-radius:3px;padding:2rem 1.9rem;}
+.course.c1{border-left:4px solid var(--red);}
+.course.c2{border-left:4px solid var(--accent);}
+.course .tag{font-family:var(--num);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--charcoal);opacity:.55;display:block;margin-bottom:.5rem;}
+.course h4{font-family:var(--serif);font-size:1.55rem;font-weight:600;color:var(--navy);line-height:1.25;margin-bottom:.3rem;}
+.course .def{font-size:.95rem;color:var(--red);font-weight:600;margin-bottom:1.1rem;}
+.flow{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-size:.85rem;font-weight:600;color:var(--navy);
+  background:var(--gray);border-radius:3px;padding:.7rem .9rem;margin-bottom:1.1rem;}
+.flow .a{font-family:var(--num);color:var(--pale);}
+.course ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.course li{font-size:.95rem;line-height:1.55;padding-left:1.3rem;position:relative;}
+.course li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-family:var(--num);font-weight:700;}
+.course .res{margin-top:1.1rem;padding-top:1rem;border-top:1px dashed var(--gray-m);font-size:.95rem;font-weight:600;color:var(--navy);}
+@media(max-width:760px){.courses{grid-template-columns:1fr;}}
+
+/* proof (note) */
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;align-items:center;}
+.note-mock{background:var(--navy);border-radius:6px;padding:2.4rem 2rem;color:#fff;position:relative;overflow:hidden;}
+.note-mock .nm-top{display:flex;gap:.4rem;margin-bottom:1.6rem;}
+.note-mock .nm-top i{height:3px;border-radius:2px;}
+.note-mock .nm-top i:nth-child(1){flex:5;background:#fff;}
+.note-mock .nm-top i:nth-child(2){flex:1.2;background:var(--red);}
+.note-mock .nm-top i:nth-child(3){flex:1;background:var(--pale);}
+.note-mock .nm-t{font-family:var(--serif);font-size:1.7rem;font-weight:500;line-height:1.3;margin-bottom:.4rem;}
+.note-mock .nm-s{font-size:.85rem;opacity:.75;margin-bottom:1.6rem;}
+.note-mock .nm-row{display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.16);padding:.7rem 0;font-size:.9rem;}
+.note-mock .nm-row b{font-family:var(--num);color:var(--pale);}
+.proof-list{list-style:none;display:flex;flex-direction:column;gap:1.1rem;}
+.proof-list li{padding-left:1.7rem;position:relative;font-size:1rem;line-height:1.65;}
+.proof-list li b{color:var(--navy);}
+.proof-list li::before{content:'';position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--red);border-radius:50%;}
+@media(max-width:820px){.proof-grid{grid-template-columns:1fr;gap:2rem;}}
+
+/* compare table */
+.ct{width:100%;border-collapse:collapse;margin-top:.5rem;border:1px solid var(--gray-m);font-size:.96rem;}
+.ct th{background:var(--navy);color:#fff;text-align:left;padding:.85rem 1.1rem;font-weight:500;font-size:.82rem;letter-spacing:.03em;}
+.ct td{padding:.8rem 1.1rem;border-bottom:1px solid var(--gray-m);border-right:1px solid var(--gray-m);vertical-align:top;line-height:1.6;}
+.ct tr:nth-child(even) td{background:var(--gray);}
+.ct td:last-child{border-right:none;}
+.ct td b{color:var(--navy);}
+.ct .lose{color:var(--gray-d);}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;counter-reset:r;}
+.rstep{border-top:3px solid var(--pale);padding-top:1rem;}
+.rstep .rn{font-family:var(--num);font-size:.72rem;font-weight:700;color:var(--red);letter-spacing:.1em;display:block;margin-bottom:.5rem;}
+.rstep h5{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;}
+.rstep p{font-size:.85rem;line-height:1.55;color:var(--charcoal);opacity:.9;}
+@media(max-width:820px){.road{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.road{grid-template-columns:1fr;}}
+
+/* FAQ */
+.faq details{border-bottom:1px solid var(--gray-m);padding:1.2rem 0;}
+.faq summary{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--navy);cursor:pointer;
+  list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';font-family:var(--num);font-weight:400;color:var(--red);font-size:1.6rem;transition:transform .2s;}
+.faq details[open] summary::after{content:'–';}
+.faq p{font-size:1rem;line-height:1.8;color:var(--charcoal);margin-top:.9rem;max-width:760px;}
+
+/* CTA / form */
+#apply{background:var(--navy);color:#fff;border-bottom:none;}
+#apply .eye{color:var(--pale);}
+#apply .h2{color:#fff;}
+#apply .h2 em{color:var(--pale);}
+#apply .sub{color:rgba(255,255,255,.8);}
+.apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.apply-points{list-style:none;display:flex;flex-direction:column;gap:1rem;}
+.apply-points li{padding-left:1.7rem;position:relative;font-size:1.02rem;line-height:1.6;}
+.apply-points li::before{content:'→';position:absolute;left:0;color:var(--pale);font-family:var(--num);font-weight:600;}
+.apply-points li b{color:#fff;}
+.form-card{background:#fff;border-radius:6px;padding:2.2rem 2rem;color:var(--charcoal);}
+.form-card h3{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;}
+.form-card .fh{font-size:.9rem;color:var(--charcoal);opacity:.7;margin-bottom:1.4rem;}
+.field{margin-bottom:1rem;}
+.field label{display:block;font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;letter-spacing:.02em;}
+.field input,.field select{width:100%;padding:.8rem .9rem;border:1.5px solid var(--gray-m);border-radius:3px;
+  font-family:var(--sans);font-size:.95rem;color:var(--charcoal);background:#fff;}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);}
+.form-card .btn{width:100%;justify-content:center;margin-top:.4rem;}
+.form-note{font-size:.78rem;color:var(--gray-d);margin-top:.9rem;line-height:1.5;text-align:center;}
+.urgency{display:inline-flex;align-items:center;gap:.5rem;background:rgba(155,28,46,.12);border:1px solid rgba(184,212,232,.3);
+  color:var(--pale);font-size:.82rem;font-weight:600;padding:.5rem .9rem;border-radius:2px;margin-bottom:1.4rem;}
+.urgency .dot{width:7px;height:7px;border-radius:50%;background:var(--red);}
+@media(max-width:820px){.apply-grid{grid-template-columns:1fr;gap:2rem;}}
+
+/* footer */
+footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charcoal);opacity:.75;}
+.foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;align-items:center;}
+.foot-brand{font-family:var(--serif);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);opacity:1;}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.on{opacity:1;transform:none;}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;}
+  .reveal{opacity:1;transform:none;transition:none;}
+  .btn:hover{transform:none;}
+}
+@media(max-width:600px){
+  body{font-size:15px;}
+  section{padding:4.5rem 0;}
+  #hero{padding:7rem 0 3.5rem;}
+}
+
+/* ---- school network ---- */
+.schools{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:.6rem;}
+.school{border:1px solid var(--gray-m);border-radius:3px;padding:.9rem 1rem;display:flex;flex-direction:column;gap:.2rem;}
+.school.flag{border:1.5px solid var(--navy);background:var(--pale-l);}
+.school .sn{font-family:var(--num);font-size:.66rem;font-weight:700;color:var(--red);letter-spacing:.1em;}
+.school b{color:var(--navy);font-weight:600;font-family:var(--serif);font-size:1.05rem;line-height:1.2;}
+.school span{font-size:.78rem;color:var(--charcoal);opacity:.65;}
+@media(max-width:720px){.schools{grid-template-columns:repeat(2,1fr);}}
+.cap{font-size:.82rem;color:var(--gray-d);margin-top:1rem;line-height:1.6;}
+.tagrow{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.4rem;}
+.tagrow .tg{font-size:.78rem;font-weight:600;color:var(--navy);background:var(--pale-l);border:1px solid var(--pale);border-radius:2px;padding:.35rem .8rem;}
+
+/* ---- Week 1-3 two-lane infographic ---- */
+.wk{margin-top:.5rem;border:1px solid var(--gray-m);border-radius:4px;overflow:hidden;}
+.wk-row{display:grid;grid-template-columns:140px 1fr 1fr 1fr;}
+.wk-head .wk-c{background:var(--navy);color:#fff;font-family:var(--num);font-weight:700;font-size:.78rem;letter-spacing:.12em;padding:.7rem 1rem;text-align:center;border-left:1px solid rgba(255,255,255,.15);}
+.wk-head .wk-lbl{background:var(--navy);}
+.wk-lbl{display:flex;align-items:center;padding:1rem;font-family:var(--serif);font-weight:600;font-size:1.05rem;color:var(--navy);border-top:1px solid var(--gray-m);}
+.wk-c{padding:1rem;border-left:1px solid var(--gray-m);border-top:1px solid var(--gray-m);}
+.wk-theirs .wk-lbl{background:var(--pale-l);}
+.wk-theirs .wk-c{background:#fafcfe;}
+.wk-bar{height:7px;border-radius:4px;background:var(--gray-m);margin-bottom:.6rem;overflow:hidden;}
+.wk-bar i{display:block;height:100%;border-radius:4px;}
+.wk-ours .wk-bar i{background:var(--gray-d);}
+.wk-theirs .wk-bar i{background:var(--navy);}
+.wk-c .wk-st{font-weight:700;font-size:.9rem;color:var(--navy);display:block;margin-bottom:.2rem;}
+.wk-c .wk-tx{font-size:.82rem;line-height:1.5;color:var(--charcoal);opacity:.85;}
+.wk-ours .wk-c .wk-st{color:var(--charcoal);}
+@media(max-width:720px){
+  .wk-row{grid-template-columns:1fr 1fr 1fr;}
+  .wk-lbl{grid-column:1/-1;border-top:2px solid var(--navy);}
+  .wk-head .wk-lbl{display:none;}
+}
+
+/* ---- ordered sequence infographic ---- */
+.seq{display:flex;align-items:flex-start;margin-top:.5rem;}
+.seq-node{flex:1;text-align:center;position:relative;padding:0 .4rem;}
+.seq-node::before{content:'';position:absolute;top:24px;left:-50%;width:100%;height:2px;background:var(--gray-m);z-index:0;}
+.seq-node:first-child::before{display:none;}
+.seq-node .circ{width:50px;height:50px;border-radius:50%;border:2px solid var(--navy);color:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--num);font-weight:700;font-size:1.1rem;margin:0 auto .9rem;background:#fff;position:relative;z-index:1;}
+.seq-node.hl .circ{background:var(--red);border-color:var(--red);color:#fff;}
+.seq-node .tag{display:inline-block;font-family:var(--num);font-size:.6rem;font-weight:700;letter-spacing:.1em;color:var(--red);margin-bottom:.35rem;min-height:.9rem;}
+.seq-node h5{font-family:var(--serif);font-size:1.2rem;color:var(--navy);margin-bottom:.3rem;}
+.seq-node p{font-size:.82rem;color:var(--charcoal);opacity:.85;line-height:1.5;}
+@media(max-width:720px){
+  .seq{flex-direction:column;gap:1.3rem;}
+  .seq-node{text-align:left;display:grid;grid-template-columns:50px 1fr;gap:1rem;align-items:start;padding:0;}
+  .seq-node::before{display:none;}
+  .seq-node .circ{margin:0;}
+  .seq-node .tag{grid-column:2;margin-bottom:.1rem;}
+}
+/* ---- lead magnet ---- */
+.magnet{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:2.6rem;}
+.mag-card{border:1px solid var(--gray-m);border-radius:4px;padding:1.8rem 1.7rem;background:var(--gray);}
+.mag-card.full{background:var(--pale-l);border:1.5px solid var(--navy);}
+.mag-tag{display:inline-block;font-family:var(--num);font-size:.62rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--navy);background:#fff;border:1px solid var(--gray-m);border-radius:2px;padding:.25rem .6rem;margin-bottom:.9rem;}
+.mag-tag.red{background:var(--red);color:#fff;border-color:var(--red);}
+.mag-card h4{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--navy);margin-bottom:.5rem;}
+.mag-card p{font-size:.93rem;line-height:1.65;color:var(--charcoal);margin-bottom:1.1rem;}
+.mag-form{display:flex;gap:.5rem;flex-wrap:wrap;}
+.mag-form input{flex:1;min-width:170px;padding:.75rem .9rem;border:1.5px solid var(--gray-m);border-radius:3px;
+  font-family:var(--sans);font-size:.92rem;background:#fff;color:var(--charcoal);}
+.mag-form input:focus{outline:none;border-color:var(--accent);}
+@media(max-width:760px){.magnet{grid-template-columns:1fr;}}
+
+.school .sen{font-family:var(--num);font-size:.72rem;color:var(--gray-d);font-style:normal;line-height:1.3;margin-top:.1rem;}
+.school .sdesc{font-size:.78rem;color:var(--charcoal);opacity:.75;line-height:1.4;margin-top:.35rem;}
+.school .sloc{font-size:.72rem;color:var(--navy);font-weight:600;margin-top:.35rem;}
+.school.elite{border:1.5px solid var(--red);}
+.sn.tier-flag{color:var(--navy);}
+.sn.tier-elite{color:var(--red);}
+.sn.tier-a{color:var(--accent);}
+.sn.tier-b{color:var(--gray-d);}
+
+/* ==================================================================
+   READABILITY & TYPE REFINEMENT  (Korean-first)
+   - 구성/카피/색은 그대로. 한글 폰트 폴백 문제 해결 + 대비·행간·자간 정리.
+   - 규칙을 삭제하지 않고 마지막에 오버라이드하여 안전하게 정렬.
+================================================================== */
+:root{
+  /* 헤드라인: 영문=Cormorant, 한글=Noto Serif KR (실제 세리프로 렌더) */
+  --serif:'Cormorant Garamond','Noto Serif KR',serif;
+  /* 본문: 한글·영문 모두 Pretendard 우선 → 폴백 제거, 균일한 고급 산세리프 */
+  --sans:'Pretendard','Montserrat',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',system-ui,sans-serif;
+  --num:'Inter','Pretendard',sans-serif;
+}
+body{font-size:17px;line-height:1.82;letter-spacing:-.003em;text-rendering:optimizeLegibility;}
+
+/* 헤드라인: 한글 세리프에 충분한 무게 + 균형 잡힌 줄바꿈 */
+.hero-h1,.h2{font-weight:500;letter-spacing:-.015em;text-wrap:balance;}
+.hero-h1{line-height:1.14;}
+.h2{line-height:1.28;}
+.hero-h1 em,.h2 em{font-weight:500;}
+.punch{font-weight:500;text-wrap:balance;line-height:1.55;}
+
+/* 서브 타이틀/카드 제목 위계 강화 */
+.col h4,.step h4,.course h4,.mag-card h4,.form-card h3,.seq-node h5,.school b,.faq summary,.note-mock .nm-t{font-weight:600;}
+
+/* 본문 문단: 한글 줄바꿈 개선 + 대비 상향 */
+.sub,.hero-sub,.faq p,.proof-list li,.apply-points li,.course li,.col li,.step p,.mag-card p{text-wrap:pretty;}
+.sub,.hero-sub{color:#333;line-height:1.9;}
+.sub b,.hero-sub b{color:var(--navy);font-weight:700;}
+
+/* 저대비(opacity로 흐려진) 텍스트를 접근성 수준으로 끌어올림 */
+.hero-eyebrow{opacity:1;color:#5a5a5a;}
+.eye{font-weight:700;}
+.tr span{opacity:1;color:#555;}
+.tr b{font-weight:600;}
+.cap{color:#6b7480;}
+.school .sdesc{opacity:1;color:#555;}
+.school .sen{color:#7a828c;}
+.course .tag{opacity:1;color:#666;}
+.wk-c .wk-tx{opacity:1;color:#444;}
+.seq-node p{opacity:1;color:#555;}
+.faq p{color:#3a3a3a;}
+footer{opacity:1;color:#555;}
+.form-card .fh{opacity:1;color:#666;}
+
+/* 폼 필드 가독성 */
+.field label{font-size:.82rem;}
+.field input,.field select,.mag-form input{font-family:var(--sans);font-size:.98rem;}
+.field input::placeholder,.mag-form input::placeholder{color:#9aa3ad;}
+
+/* 숫자·라벨은 Inter 유지가 명확하도록 */
+.f-num,.tr b,.wk-head .wk-c,.seq-node .circ{font-family:var(--num);}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">HARRIS PREP <span class="amp">&amp;</span> IPSWICH</div>
+  <div class="nav-cta">
+    <a href="#ipswich" class="btn btn-ghost">입스위치 보기</a>
+    <a href="#apply" class="btn btn-primary">무료 로드맵 진단</a>
+  </div>
+</nav>
+
+<!-- HERO : the check-in scene -->
+<header id="hero">
+  <div class="topbar"><span></span><span></span><span></span></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-eyebrow">입스위치 단기유학 · Harris Prep Flagship</p>
+        <h1 class="hero-h1">우리 아이가 적응하는 사이,<br><em>그 아이는 이미 배움에 몰입합니다.</em></h1>
+        <p class="hero-sub">국내 명문 캠프 입소날.<br>
+        어머니는 아이의 적응을 응원하며 카탈로그를 받아 듭니다. 그런데 같은 날, <b>그 아이</b>는 이미
+        <b>호주 명문 사립에서 2달 반을 생활하고 공부하며 &lsquo;엑셀(excel)&rsquo;한 뒤</b> 이 캠프에 들어섭니다.</p>
+        <div class="hero-ctas">
+          <a href="#apply" class="btn btn-primary">무료 로드맵 진단 시작 <span class="arw">&rarr;</span></a>
+          <a href="#ipswich" class="btn btn-ghost">그 아이가 다녀온 길</a>
+        </div>
+        <div class="hero-trust">
+          <div class="tr"><b>1863</b><span>호주 명문 사립 정규 수업</span></div>
+          <div class="tr"><b>2.5개월</b><span>초격차 단기유학 1개 Term</span></div>
+          <div class="tr"><b>12개교</b><span>명문 사립 네트워크</span></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg class="diverge" viewBox="0 0 360 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="같은 날 입소하지만 출발선이 다른 두 아이">
+          <line x1="10" y1="150" x2="150" y2="150" stroke-width="3" class="dv-path-up"/>
+          <path d="M150,150 C210,150 235,70 350,55" fill="none" stroke-width="3.5" class="dv-path-up"/>
+          <path d="M150,150 C210,150 235,232 350,250" fill="none" stroke-width="2.5" class="dv-path-down"/>
+          <circle cx="150" cy="150" r="7" class="dv-node"/>
+          <text x="8" y="140" class="dv-lab-dim">같은 날, 같은 캠프 입소</text>
+          <text x="232" y="42" class="dv-lab">선두에서 달린다</text>
+          <text x="200" y="272" class="dv-lab-dim">적응부터 시작한다</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SCENE : two children, same door -->
+<section id="scene">
+  <div class="wrap">
+    <span class="eye reveal">입소일, 같은 문을 들어서는 두 아이</span>
+    <h2 class="h2 reveal d1">같은 캠프에 입소하지만,<br><em>출발선이 다릅니다.</em></h2>
+    <p class="sub reveal d2">우리 아이가 부족해서가 아닙니다. 두 아이가 <b>밟아 온 순서</b>가 달랐을 뿐입니다.</p>
+
+    <div class="split">
+      <div class="col reveal d1">
+        <h4>지금, 우리 아이</h4>
+        <ul>
+          <li>설렘 반, 걱정 반으로 입소한다</li>
+          <li>낯선 환경과 영어에 &lsquo;적응&rsquo;하는 것부터 시작</li>
+          <li>첫 주는 긴장 속에 흘러간다</li>
+          <li>캠프가 특목고를 미리 맛보는 첫 경험이다</li>
+        </ul>
+      </div>
+      <div class="col win reveal d2">
+        <h4>같은 날 입소한 그 아이</h4>
+        <ul>
+          <li>이미 호주 명문 사립에서 2달 반을 보냈다</li>
+          <li>현지 수업·발표·에세이를 마치고 왔다</li>
+          <li>첫날부터 여유와 자신감이 다르다</li>
+          <li>이 캠프는 &lsquo;미니 체험&rsquo;일 뿐, 복습에 가깝다</li>
+        </ul>
+      </div>
+    </div>
+    <p class="punch reveal d2">차이는 아이가 아니라,<br>아이가 <b>먼저 밟은 길</b>이었습니다.</p>
+  </div>
+</section>
+
+<!-- GAP : one adapts a week, the other leads -->
+<section id="gap">
+  <div class="wrap">
+    <span class="eye reveal">첫 주, 무슨 일이 벌어지나</span>
+    <h2 class="h2 reveal d1">한 아이가 적응하는 1주,<br><em>그 아이는 선두에서 달립니다.</em></h2>
+    <p class="sub reveal d2">2달 반의 해외 명문 사립 생활은 아이에게 &lsquo;영어로 사고하는 회로&rsquo;와
+    <b>글로벌 리더십, 흔들리지 않는 자신감</b>을 남깁니다. 그 아이는 국내 캠프에서 적응할 것이 없습니다.</p>
+
+    <div class="wk reveal d2">
+      <div class="wk-row wk-head">
+        <div class="wk-c wk-lbl">&nbsp;</div>
+        <div class="wk-c">WEEK 1</div>
+        <div class="wk-c">WEEK 2</div>
+        <div class="wk-c">WEEK 3</div>
+      </div>
+      <div class="wk-row wk-ours">
+        <div class="wk-lbl">지금, 우리 아이</div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:28%"></i></div><span class="wk-st">적응</span><span class="wk-tx">낯선 환경·영어에 긴장. 관찰하며 눈치를 본다.</span></div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:52%"></i></div><span class="wk-st">참여 시작</span><span class="wk-tx">조금씩 입을 연다. 이제야 손을 들기 시작.</span></div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:70%"></i></div><span class="wk-st">익숙해질 무렵</span><span class="wk-tx">막 편해졌는데 &mdash; 캠프가 끝난다.</span></div>
+      </div>
+      <div class="wk-row wk-theirs">
+        <div class="wk-lbl">그 아이</div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:80%"></i></div><span class="wk-st">선두 출발</span><span class="wk-tx">첫날부터 영어로 발표·토론을 주도한다.</span></div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:92%"></i></div><span class="wk-st">팀을 이끈다</span><span class="wk-tx">자신감으로 조를 리딩. 프로그램을 끌고 간다.</span></div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:100%"></i></div><span class="wk-st">최상위 마무리</span><span class="wk-tx">글로벌 리더십으로 프로그램 정상에서 끝낸다.</span></div>
+      </div>
+    </div>
+    <p class="punch reveal d2">같은 3주, 시작이 아니라 <b>도착점</b>이 다릅니다.</p>
+  </div>
+</section>
+
+<!-- TURN : it's not too late, meet Harris Prep -->
+<section id="turn">
+  <div class="wrap">
+    <span class="eye reveal">그래서, 지금</span>
+    <h2 class="h2 reveal d1">지금이라도<br><em>늦지 않았습니다.</em></h2>
+    <p class="sub reveal d2">&lsquo;다른 출발선&rsquo;은 타고나는 것이 아니라 <b>설계되는 것</b>입니다.
+    그 순서를 설계하는 곳이 Harris Prep입니다.</p>
+    <div class="card navy reveal">
+      <span class="card-eye">Harris Prep — 초격차 로드맵 아키텍트</span>
+      <p><b>입시·영어교육 25년, 초격차 로드맵 아키텍트</b>가 아이를 진단하고,
+      해외 명문 사립 단기유학부터 귀국 후 특목·국제 로드맵까지 <b>순서 전체를 직접 설계</b>합니다.
+      늦었다고 느낀 지금이, 그 아이와 같은 출발선에 서는 가장 빠른 시작입니다.</p>
+    </div>
+    <div class="hero-ctas" style="margin-top:2rem;">
+      <a href="#apply" class="btn btn-primary">무료 로드맵 진단 시작 <span class="arw">&rarr;</span></a>
+      <a href="#ipswich" class="btn btn-ghost">플래그십 입스위치 보기</a>
+    </div>
+  </div>
+</section>
+
+<!-- IPSWICH : the flagship -->
+<section id="ipswich">
+  <div class="wrap">
+    <span class="eye reveal">The Flagship · 초격차 티어 0</span>
+    <h2 class="h2 reveal d1">그 아이가 다녀온 곳,<br><em>입스위치 그래머.</em></h2>
+    <p class="sub reveal d2">1863년 설립된 호주 명문 사립. 관광·체험 캠프가 아니라
+    <b>실제 정규 수업(2.5개월 · 1개 Term)</b>에 우리 아이가 현지 학생으로 들어갑니다. 근본이 다릅니다.</p>
+
+    <table class="ct reveal d2">
+      <tr><th>구분</th><th>일반 어학 캠프</th><th>입스위치 단기유학</th></tr>
+      <tr><td>수업</td><td class="lose">캠프용 특별 프로그램</td><td><b>명문 사립 정규 수업 참여</b></td></tr>
+      <tr><td>기간</td><td class="lose">1~3주 체험</td><td><b>2.5개월 · 1개 Term 몰입</b></td></tr>
+      <tr><td>또래</td><td class="lose">같은 한국 학생들</td><td>현지 학생들과 나란히</td></tr>
+      <tr><td>관리</td><td class="lose">인솔 교사</td><td><b>로드맵 아키텍트 현지 상주 · 24시간 케어</b></td></tr>
+      <tr><td>귀국 시 실물</td><td class="lose">추억·사진</td><td><b>캠프 성공 시크릿 노트 + 성장 리포트</b></td></tr>
+    </table>
+    <div class="tagrow reveal d2">
+      <span class="tg">영어로 사고하는 회로</span>
+      <span class="tg">발표·토론 주도력</span>
+      <span class="tg">글로벌 리더십</span>
+      <span class="tg">흔들리지 않는 자신감</span>
+    </div>
+  </div>
+</section>
+
+<!-- NETWORK : 12 schools -->
+<section id="network">
+  <div class="wrap">
+    <span class="eye reveal">입스위치는 시작입니다</span>
+    <h2 class="h2 reveal d1">호주 명문 사립<br><em>12개교 네트워크.</em></h2>
+    <p class="sub reveal d2">아이마다 성향·목표·레벨이 다릅니다. Harris Prep은 <b>호주 명문 사립 12개교</b>와 연결되어, 성별·지역·학업 성향에 따라
+    아이에게 가장 맞는 학교를 매칭합니다. GPS 엘리트 남학교부터 QLD 최상위권 여학교, 혁신 교육 명문까지 &mdash;
+    입스위치 그래머는 그 <b>플래그십</b>입니다.</p>
+
+    <div class="schools reveal d2">
+      <div class="school flag">
+        <span class="sn tier-flag">Flagship</span>
+        <b>입스위치 그래머</b>
+        <em class="sen">Ipswich Grammar School</em>
+        <span class="sdesc">1863 · QLD 최초 사립(남) · 그래머 8대 명문</span>
+        <span class="sloc">입스위치</span>
+      </div>
+      <div class="school elite">
+        <span class="sn tier-elite">Elite</span>
+        <b>BBC</b>
+        <em class="sen">Brisbane Boys&rsquo; College</em>
+        <span class="sdesc">GPS 소속 엘리트 남학교 · 전통/인지도 최상</span>
+        <span class="sloc">브리즈번 토웡</span>
+      </div>
+      <div class="school elite">
+        <span class="sn tier-elite">Elite</span>
+        <b>세인트에이든</b>
+        <em class="sen">St Aidan&rsquo;s Anglican Girls&rsquo;</em>
+        <span class="sdesc">QLD 최상위권 학업 엘리트 여학교</span>
+        <span class="sloc">브리즈번 코린다</span>
+      </div>
+      <div class="school elite">
+        <span class="sn tier-elite">Elite</span>
+        <b>세인트마가렛</b>
+        <em class="sen">St Margaret&rsquo;s Anglican Girls&rsquo;</em>
+        <span class="sdesc">부촌 Ascot · 역사 깊은 엘리트 여학교</span>
+        <span class="sloc">브리즈번 애스콧</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-a">A</span>
+        <b>웨스트모튼 앵글리칸</b>
+        <em class="sen">West Moreton Anglican</em>
+        <span class="sdesc">대규모 남녀공학 · 폭넓은 교육 기회</span>
+        <span class="sloc">입스위치 인근</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-a">A</span>
+        <b>투움바 앵글리칸</b>
+        <em class="sen">Toowoomba Anglican</em>
+        <span class="sdesc">투움바 1위 명문 기숙학교</span>
+        <span class="sloc">투움바</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-a">A</span>
+        <b>세인트로렌스</b>
+        <em class="sen">St Laurence&rsquo;s College</em>
+        <span class="sdesc">카톨릭 명문(남) · 학업+스포츠 조화</span>
+        <span class="sloc">사우스 브리즈번</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-a">A</span>
+        <b>모턴베이</b>
+        <em class="sen">Moreton Bay College</em>
+        <span class="sdesc">베이사이드 대표 명문 여학교</span>
+        <span class="sloc">브리즈번 동부</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-a">A</span>
+        <b>세인트폴</b>
+        <em class="sen">St Paul&rsquo;s School</em>
+        <span class="sdesc">북부 명문 · 디자인씽킹 혁신 교육</span>
+        <span class="sloc">브리즈번 북부</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-b">B+</span>
+        <b>존폴</b>
+        <em class="sen">John Paul College</em>
+        <span class="sdesc">대규모 명문 · 국제학생 관리/시설 우수</span>
+        <span class="sloc">브리즈번 남부</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-b">B+</span>
+        <b>세인트스티븐스</b>
+        <em class="sen">St Stephen&rsquo;s College</em>
+        <span class="sdesc">학업 성취 높은 사립</span>
+        <span class="sloc">골드코스트 쿠메라</span>
+      </div>
+      <div class="school">
+        <span class="sn tier-b">B+</span>
+        <b>킹스컬리지</b>
+        <em class="sen">King&rsquo;s Christian College</em>
+        <span class="sdesc">대규모 기독교 명문 · 체계적 커리큘럼</span>
+        <span class="sloc">골드코스트</span>
+      </div>
+    </div>
+    <p class="cap reveal d2">※ 학교 정보는 공개 자료 기반입니다. 한국 학생 비율은 학교가 공식 공개하지 않으므로 특정 %로 단정하지 않으며, <b>비(非)한인 밀집 지역 + 국제학생이 여러 국가로 분산된 학교</b>를 우선 큐레이션합니다. 학교 확정 매칭은 1:1 상담에서 안내드립니다.</p>
+  </div>
+</section>
+
+<!-- PROOF : the note -->
+<section id="note">
+  <div class="wrap">
+    <span class="eye reveal">캠프 성공 시크릿 노트</span>
+    <h2 class="h2 reveal d1">우리 아이,<br><em>캠프 준비 잘 하셨나요?</em></h2>
+    <p class="sub reveal d2">캠프에서 성공하는 아이는 <b>노트를 끝까지 채운 아이</b>였습니다.
+    Harris Prep이 그 아이들의 하루를 분석해 만든 것이 <b>&lsquo;캠프 성공 시크릿 노트&rsquo;</b>입니다.
+    입스위치를 다녀온 아이는 이 노트를 손에 쥐고 돌아옵니다.</p>
+    <div class="proof-grid">
+      <div class="note-mock reveal d1">
+        <div class="nm-top"><i></i><i></i><i></i></div>
+        <div class="nm-t">캠프 성공<br>시크릿 노트</div>
+        <div class="nm-s">My Camp Reflection Note · Ipswich Edition</div>
+        <div class="nm-row"><span>하루 한 장 리플렉션 저널</span><b>매일</b></div>
+        <div class="nm-row"><span>에세이 (기본 + 심화 토론)</span><b>2 트랙</b></div>
+        <div class="nm-row"><span>고급 어휘 · 논증 패턴</span><b>고교 수준</b></div>
+        <div class="nm-row"><span>성장 증빙 (전/후 · 교사 리포트)</span><b>4 면</b></div>
+      </div>
+      <div>
+        <ul class="proof-list reveal d2">
+          <li><b>이 노트가 &lsquo;다녀왔다&rsquo;는 가장 확실한 증거</b>입니다. 매일 채운 손글씨가 아이의 2.5개월을 증명합니다.</li>
+          <li><b>심화 토론 트랙.</b> &ldquo;동물원은 필요한가&rdquo; 같은 주제에 영어로 입장을 세우고 반박까지 &mdash; 영미권 고교 수준.</li>
+          <li><b>전/후 에세이.</b> 같은 주제를 처음과 끝에 써서, 성장을 &lsquo;눈으로&rsquo; 보여줍니다.</li>
+          <li><b>노트를 덮는 순간, 다음 트랙이 시작됩니다.</b> 귀국 후 로드맵 진단으로 이어집니다.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="magnet reveal d2">
+      <div class="mag-card">
+        <span class="mag-tag">무료 배포</span>
+        <h4>요약본 PDF 받기</h4>
+        <p>&lsquo;캠프 성공 시크릿&rsquo; 핵심만 담은 요약본. 이메일만 남기시면 바로 보내드립니다.</p>
+        <div class="mag-form">
+          <input type="email" placeholder="이메일 주소">
+          <a href="#" class="btn btn-pale" onclick="return false;">요약본 받기</a>
+        </div>
+      </div>
+      <div class="mag-card full">
+        <span class="mag-tag red">상담 신청 시 증정</span>
+        <h4>시크릿 노트 <b>전권</b></h4>
+        <p>무료 로드맵 진단·상담을 신청하신 학부모님께는 <b>시크릿 노트 전권</b>을 드립니다.
+        아이의 캠프 준비를 오늘부터 시작하세요.</p>
+        <a href="#apply" class="btn btn-primary">무료 진단 신청하고 노트 받기 <span class="arw">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER : the sequence for our child -->
+<section id="order">
+  <div class="wrap">
+    <span class="eye reveal">우리 아이의 순서</span>
+    <h2 class="h2 reveal d1">세계에서 먼저 단련하고,<br><em>앞선 자리에서 출발합니다.</em></h2>
+    <p class="sub reveal d2">그 아이가 앞선 이유는 단순합니다 &mdash; <b>입스위치를 먼저 다녀왔기 때문</b>입니다.
+    해외에서 먼저 단련하고 국내 무대에 앞서 서는 이 순서가, 출발선 자체를 바꿉니다.</p>
+    <div class="seq reveal d2">
+      <div class="seq-node">
+        <div class="circ">1</div><span class="tag">&nbsp;</span>
+        <h5>진단</h5><p>성향·레벨 진단, 학교·목표 매칭</p>
+      </div>
+      <div class="seq-node hl">
+        <div class="circ">2</div><span class="tag">해외 몰입</span>
+        <h5>입스위치</h5><p>2.5개월 명문 사립 정규 수업 몰입</p>
+      </div>
+      <div class="seq-node">
+        <div class="circ">3</div><span class="tag">&nbsp;</span>
+        <h5>증빙</h5><p>캠프 성공 시크릿 노트 + 성장 리포트</p>
+      </div>
+      <div class="seq-node hl">
+        <div class="circ">4</div><span class="tag">선두 착지</span>
+        <h5>선두 입소</h5><p>국내 명문 캠프에 선두로 착지</p>
+      </div>
+      <div class="seq-node">
+        <div class="circ">5</div><span class="tag">&nbsp;</span>
+        <h5>도약</h5><p>특목·국제·해외 대학 트랙 진입</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <span class="eye reveal">부모님이 가장 많이 묻는 것</span>
+    <h2 class="h2 reveal d1">걱정, 그대로<br><em>설계에 반영했습니다.</em></h2>
+    <div class="faq reveal d2">
+      <details>
+        <summary>이미 캠프를 신청했는데, 지금 시작해도 되나요?</summary>
+        <p>늦지 않았습니다. 이번 캠프는 &lsquo;미니 체험&rsquo;으로 두고, 다음 사이클을 위해 지금 진단부터 시작하면 됩니다.
+        입스위치를 먼저 다녀온 뒤 국내 캠프에 다시 서면, 아이의 출발선 자체가 달라집니다.</p>
+      </details>
+      <details>
+        <summary>케어만 받던 우리 아이가 2.5개월을 견딜까요?</summary>
+        <p>로드맵 아키텍트가 현지에 상주하며 기상부터 취침, 저녁 화상 미팅까지 24시간 관리합니다.
+        아이는 &ldquo;혼자 견딜까&rdquo;가 아니라 &ldquo;혼자서도 해냈다&rdquo;는 자신감을 안고 돌아옵니다.</p>
+      </details>
+      <details>
+        <summary>2.5개월이나 빠지면 한국 학습에 결손이 생기지 않나요?</summary>
+        <p>저녁마다 한국 수학·과학 학습을 이어갑니다. 정규 수업(주간) + 학업 영어(오후) + 한국 학습(저녁)의
+        밸런스를 로드맵 아키텍트가 직접 설계·감리해, 영어를 얻으면서 주요 과목 공백을 막습니다.</p>
+      </details>
+      <details>
+        <summary>우리 아이 레벨과 어느 학교가 맞을까요?</summary>
+        <p>그것을 정하는 것이 <b>무료 로드맵 진단</b>입니다. SR 스코어와 성향을 진단해 12개 명문 사립 중
+        아이에게 맞는 학교를 매칭합니다. 진단 없이 시작하지 않습니다.</p>
+      </details>
+      <details>
+        <summary>비용이 적지 않습니다. 그만한 가치가 있나요?</summary>
+        <p>같은 국내 캠프에 서더라도, 입스위치를 다녀온 아이는 선두에서 달립니다. 그 &lsquo;다른 출발선&rsquo;과
+        귀국 후 로드맵까지 로드맵 아키텍트가 직접 관리합니다. &lsquo;경험&rsquo;이 아니라 &lsquo;완성&rsquo;에 쓰는 비용인 이유입니다.
+        정확한 일정·비용은 상담에서 안내드립니다.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section id="apply">
+  <div class="wrap">
+    <div class="apply-grid">
+      <div>
+        <span class="eye reveal">지금 시작하기</span>
+        <h2 class="h2 reveal d1">먼저,<br><em>아이의 로드맵을 진단합니다.</em></h2>
+        <p class="sub reveal d2">입스위치가 우리 아이에게 맞는 길인지부터 확인하세요.
+        진단은 무료이며, <b>입시·영어교육 25년, 초격차 로드맵 아키텍트</b>가 결과를 바탕으로
+        학교 매칭과 다음 단계를 직접 안내합니다.</p>
+        <ul class="apply-points reveal d2">
+          <li><b>SR 스코어·성향 진단</b> — 아이의 현재 좌표와 목표 트랙</li>
+          <li><b>학교 매칭</b> — 12개 명문 사립 중 최적교 추천</li>
+          <li><b>로드맵 아키텍트 1:1 상담</b> — 진단 해설 + 순서 설계</li>
+          <li><b>캠프 성공 시크릿 노트 전권 증정</b> — 상담 신청 학부모님께</li>
+        </ul>
+      </div>
+      <div class="form-card reveal d2">
+        <div class="urgency"><span class="dot"></span>로드맵 아키텍트 직접 인솔 · 7명 한정</div>
+        <h3>무료 로드맵 진단 신청</h3>
+        <p class="fh">1분이면 신청됩니다. <b>시크릿 노트 전권</b>을 함께 보내드립니다.</p>
+        <div class="field"><label for="pn">학부모 성함</label><input id="pn" type="text" placeholder="성함을 입력하세요"></div>
+        <div class="field"><label for="ph">연락처</label><input id="ph" type="tel" placeholder="010-0000-0000"></div>
+        <div class="field"><label for="gr">아이 학년</label>
+          <select id="gr">
+            <option value="">선택하세요</option>
+            <option>초등 3~4학년</option>
+            <option>초등 5~6학년</option>
+            <option>중등 1학년</option>
+            <option>중등 2~3학년</option>
+          </select>
+        </div>
+        <a href="#" class="btn btn-primary" onclick="return false;">무료 로드맵 진단 시작 &rarr;</a>
+        <p class="form-note">신청 시 개인정보 수집·이용에 동의하는 것으로 간주됩니다. 진단·상담 목적 외 사용하지 않습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <span class="foot-brand">Harris Prep · Ipswich Short Stay</span>
+    <span>로드맵 아키텍트 직통 상담 [연락처] · 카카오채널 [입력] · © 2026 Harris Prep</span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('on');io.unobserve(el.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+</script>
+</body>
+</html>
