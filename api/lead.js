@@ -2,6 +2,31 @@ import { createClient } from '@supabase/supabase-js';
 
 const digits = (s='') => String(s).replace(/[^0-9]/g, '');
 
+// 클라이언트 입력은 신뢰하지 않는다: 알려진 키만, 길이 제한을 걸어 통과시킨다.
+const str = (v, max) => (v === null || v === undefined || v === '') ? null : String(v).slice(0, max);
+
+const cleanAnswers = (v) => {
+  if (!Array.isArray(v)) return null;
+  const rows = v.slice(0, 12).map((a, i) => ({
+    no: Number.isFinite(+a?.no) ? +a.no : i + 1,
+    area: str(a?.area, 40),
+    question: str(a?.question, 300),
+    answer: str(a?.answer, 200),
+    score: Number.isFinite(+a?.score) ? +a.score : null,
+  }));
+  return rows.length ? rows : null;
+};
+
+const cleanScores = (v) => {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return null;
+  const out = {};
+  for (const k of Object.keys(v).slice(0, 10)) {
+    const n = +v[k];
+    if (Number.isFinite(n)) out[String(k).slice(0, 40)] = Math.max(0, Math.min(100, Math.round(n)));
+  }
+  return Object.keys(out).length ? out : null;
+};
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ ok:false, error:'Method not allowed' });
   try {
@@ -20,10 +45,16 @@ export default async function handler(req, res) {
 
     const row = {
       type,
-      parent_name: b.parent_name || null,
-      phone: b.phone || null,
-      child_grade: b.child_grade || null,
-      email: b.email || null,
+      parent_name: str(b.parent_name, 100),
+      phone: str(b.phone, 30),
+      child_grade: str(b.child_grade, 20),
+      email: str(b.email, 200),
+      result_type: str(b.result_type, 10),
+      result_name: str(b.result_name, 60),
+      scores: cleanScores(b.scores),
+      answers: cleanAnswers(b.answers),
+      consent: b.consent === true,
+      consent_marketing: b.consent_marketing === true,
       utm_source: b.utm_source || null, utm_medium: b.utm_medium || null,
       utm_campaign: b.utm_campaign || null, utm_content: b.utm_content || null, utm_term: b.utm_term || null,
       referrer: b.referrer || null, page_path: b.page_path || null,
@@ -44,7 +75,7 @@ export default async function handler(req, res) {
 
     if (process.env.SLACK_WEBHOOK_URL) {
       const text = type === 'diagnostic'
-        ? `🎯 *새 로드맵 진단 신청*\n• 성함: ${row.parent_name}\n• 연락처: ${row.phone}\n• 학년: ${row.child_grade || '-'}\n• 유입: ${row.utm_source || 'direct'} / ${row.utm_campaign || '-'}`
+        ? `🎯 *새 로드맵 진단 신청*\n• 성함: ${row.parent_name}\n• 연락처: ${row.phone}\n• 학년: ${row.child_grade || '-'}\n• 진단유형: ${row.result_name || '-'} (${row.result_type || '-'})\n• 유입: ${row.utm_source || 'direct'} / ${row.utm_campaign || '-'}`
         : `📩 *요약본 PDF 신청*\n• 이메일: ${row.email}\n• 유입: ${row.utm_source || 'direct'}`;
       fetch(process.env.SLACK_WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ text }) }).catch(()=>{});
     }

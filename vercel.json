@@ -1,1 +1,16 @@
-{ "functions": { "api/lead.js": { "maxDuration": 10 } } }
+{
+  "functions": {
+    "api/lead.js": { "maxDuration": 10 },
+    "api/leads.js": { "maxDuration": 15 }
+  },
+  "headers": [
+    {
+      "source": "/dashboard.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "X-Frame-Options", "value": "DENY" }
+      ]
+    }
+  ]
+}

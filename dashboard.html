@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Harris Prep · 리드 대시보드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --navy:#16294A; --navy-d:#0E1B33; --blue:#3D6FBF; --gold:#B2945C;
+  --line:#E4E8F0; --bg:#F6F8FB; --ink:#1B2432; --mute:#6C7A90; --white:#fff;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;background:var(--bg);color:var(--ink);
+  font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+button{font-family:inherit;cursor:pointer;}
+input,select{font-family:inherit;font-size:14px;}
+
+/* ---------- LOGIN ---------- */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.login-card{width:100%;max-width:360px;background:var(--white);border:1px solid var(--line);border-radius:8px;padding:36px 30px;}
+.login-card h1{font-size:19px;color:var(--navy);margin-bottom:6px;}
+.login-card p{font-size:13px;color:var(--mute);margin-bottom:22px;}
+.login-card input{width:100%;height:46px;border:1.5px solid #CCD4E2;border-radius:5px;padding:0 14px;margin-bottom:12px;}
+.login-card input:focus{outline:2px solid var(--navy);outline-offset:-1px;}
+.login-card button{width:100%;height:46px;background:var(--navy);color:#fff;border:none;border-radius:5px;font-size:15px;font-weight:700;}
+.login-card button:hover{background:var(--navy-d);}
+.login-err{color:#C0392B;font-size:13px;margin-bottom:12px;min-height:18px;}
+
+/* ---------- APP ---------- */
+#app{display:none;}
+header{background:var(--navy);color:#fff;padding:16px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+header h1{font-size:16px;font-weight:700;letter-spacing:-.01em;}
+header .sp{flex:1;}
+header button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);
+  border-radius:4px;padding:7px 13px;font-size:13px;}
+header button:hover{background:rgba(255,255,255,.2);}
+.sync{font-size:12px;color:rgba(255,255,255,.65);}
+
+.wrap{max-width:1400px;margin:0 auto;padding:20px 24px 60px;}
+
+/* KPI */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px;}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:7px;padding:15px 17px;}
+.kpi .k{font-size:12px;color:var(--mute);margin-bottom:4px;}
+.kpi .v{font-size:25px;font-weight:700;color:var(--navy);line-height:1.2;}
+.kpi .v small{font-size:13px;font-weight:500;color:var(--mute);}
+
+/* FILTERS */
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px;}
+.filters input,.filters select{height:38px;border:1px solid #D2DAE6;border-radius:5px;padding:0 11px;background:var(--white);}
+.filters input{flex:1;min-width:200px;}
+.filters button{height:38px;padding:0 15px;border:1px solid var(--navy);background:var(--white);color:var(--navy);
+  border-radius:5px;font-size:13px;font-weight:600;}
+.filters button:hover{background:var(--navy);color:#fff;}
+
+/* TABLE */
+.tbox{background:var(--white);border:1px solid var(--line);border-radius:7px;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;white-space:nowrap;}
+th{background:#F0F3F8;color:var(--navy);font-size:12px;font-weight:700;text-align:left;
+  padding:11px 13px;border-bottom:1px solid var(--line);position:sticky;top:0;}
+th.sortable{cursor:pointer;user-select:none;}
+th.sortable:hover{background:#E6EBF3;}
+td{padding:11px 13px;border-bottom:1px solid #F0F2F6;font-size:13.5px;}
+tbody tr{cursor:pointer;}
+tbody tr:hover{background:#F7F9FC;}
+tbody tr.sel{background:#EDF2FB;}
+.badge{display:inline-block;padding:2px 8px;border-radius:11px;font-size:11.5px;font-weight:700;}
+.badge.diag{background:#E7EEFA;color:var(--navy);}
+.badge.pdf{background:#F5EEE1;color:#8A6D33;}
+.badge.on{background:#E3F1E8;color:#2A6B44;}
+.badge.off{background:#F0F1F4;color:#7A8394;}
+.phone{font-variant-numeric:tabular-nums;}
+.empty{padding:52px 20px;text-align:center;color:var(--mute);}
+
+/* DETAIL DRAWER */
+#drawer{position:fixed;inset:0;z-index:50;display:none;background:rgba(14,27,51,.45);}
+#drawer.open{display:block;}
+.dpanel{position:absolute;top:0;right:0;width:100%;max-width:560px;height:100%;background:var(--white);
+  overflow-y:auto;padding:26px 28px 60px;}
+.dpanel h2{font-size:19px;color:var(--navy);margin-bottom:3px;}
+.dclose{position:absolute;top:16px;right:20px;background:none;border:none;font-size:27px;color:var(--mute);line-height:1;}
+.dsec{margin-top:24px;}
+.dsec h3{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1.5px;margin-bottom:10px;}
+.drow{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid #F0F2F6;font-size:13.5px;}
+.drow .l{color:var(--mute);flex:none;}
+.drow .r{text-align:right;word-break:break-all;}
+.gauge{margin-bottom:11px;}
+.gtop{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;}
+.gtop b{color:var(--navy);}
+.gbar{height:7px;background:#E8EBF2;border-radius:4px;overflow:hidden;}
+.gbar i{display:block;height:7px;background:var(--navy);border-radius:4px;}
+.qa{padding:11px 0;border-bottom:1px solid #F0F2F6;}
+.qa .q{font-size:12.5px;color:var(--mute);margin-bottom:3px;}
+.qa .q b{color:var(--blue);margin-right:5px;}
+.qa .a{font-size:14px;font-weight:600;color:var(--navy);}
+.qa .a span{float:right;font-size:12px;font-weight:500;color:var(--mute);}
+
+@media(max-width:640px){
+  .wrap{padding:16px 14px 50px;}
+  header{padding:14px 16px;}
+  .dpanel{padding:22px 18px 50px;}
+}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <form class="login-card" id="loginForm">
+    <h1>리드 대시보드</h1>
+    <p>운영진 전용입니다. 접속 비밀번호를 입력해 주세요.</p>
+    <input type="password" id="pw" placeholder="비밀번호" autocomplete="current-password" required>
+    <div class="login-err" id="loginErr"></div>
+    <button type="submit" id="loginBtn">접속</button>
+  </form>
+</div>
+
+<div id="app">
+  <header>
+    <h1>Harris Prep · 리드 대시보드</h1>
+    <span class="sync" id="sync"></span>
+    <span class="sp"></span>
+    <button id="refresh">새로고침</button>
+    <button id="csv">CSV 내려받기</button>
+    <button id="logout">로그아웃</button>
+  </header>
+
+  <div class="wrap">
+    <div class="kpis" id="kpis"></div>
+
+    <div class="filters">
+      <input type="search" id="q" placeholder="성함 · 연락처 · 진단유형 검색">
+      <select id="fType">
+        <option value="">전체 유형</option>
+        <option value="diagnostic">로드맵 진단</option>
+        <option value="summary_pdf">요약본 신청</option>
+      </select>
+      <select id="fGrade">
+        <option value="">전체 학년</option>
+        <option value="초1-3">초등 1–3학년</option>
+        <option value="초4-6">초등 4–6학년</option>
+        <option value="중1-2">중등 1–2학년</option>
+        <option value="중3+">중등 3학년 이상</option>
+      </select>
+      <select id="fPeriod">
+        <option value="">전체 기간</option>
+        <option value="1">오늘</option>
+        <option value="7">최근 7일</option>
+        <option value="30">최근 30일</option>
+      </select>
+      <button id="reset">초기화</button>
+    </div>
+
+    <div class="tbox">
+      <table>
+        <thead>
+          <tr>
+            <th class="sortable" data-sort="created_at">신청일시</th>
+            <th>구분</th>
+            <th class="sortable" data-sort="parent_name">학부모 성함</th>
+            <th>연락처</th>
+            <th>자녀 학년</th>
+            <th>진단 유형</th>
+            <th>완성도</th><th>정밀도</th><th>트랙</th><th>타이밍</th>
+            <th>마케팅 동의</th>
+            <th>유입</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" style="display:none;">표시할 신청 내역이 없습니다.</div>
+    </div>
+  </div>
+</div>
+
+<div id="drawer"><div class="dpanel" id="dpanel"></div></div>
+
+<script>
+(function(){
+  var KEY='hp_dash_pw', AREAS=['완성도','정밀도','트랙','타이밍'];
+  var leads=[], view=[], sortKey='created_at', sortDir=-1, selId=null;
+
+  var $=function(id){return document.getElementById(id);};
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+
+  function fmtDate(iso){
+    if(!iso) return '-';
+    var d=new Date(iso);
+    if(isNaN(d)) return '-';
+    var p=function(n){return String(n).padStart(2,'0');};
+    return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate())+' '+p(d.getHours())+':'+p(d.getMinutes());
+  }
+  function fmtPhone(v){
+    if(!v) return '-';
+    var d=String(v).replace(/[^0-9]/g,'');
+    if(d.length===11) return d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7);
+    if(d.length===10) return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6);
+    return v;
+  }
+  function daysAgo(n){ var d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()-(n-1)); return d; }
+
+  /* ---------- AUTH + FETCH ---------- */
+  function load(pw){
+    return fetch('/api/leads?limit=2000',{headers:{Authorization:'Bearer '+pw}})
+      .then(function(r){ return r.json().then(function(d){ return {status:r.status, body:d}; }); });
+  }
+
+  $('loginForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var pw=$('pw').value, btn=$('loginBtn');
+    btn.disabled=true; btn.textContent='확인 중…'; $('loginErr').textContent='';
+    load(pw).then(function(res){
+      btn.disabled=false; btn.textContent='접속';
+      if(res.status===200 && res.body.ok){
+        sessionStorage.setItem(KEY,pw);
+        leads=res.body.leads; enterApp();
+      } else {
+        $('loginErr').textContent=res.body.error||'접속에 실패했습니다.';
+      }
+    }).catch(function(){
+      btn.disabled=false; btn.textContent='접속';
+      $('loginErr').textContent='네트워크 오류입니다. 잠시 후 다시 시도해 주세요.';
+    });
+  });
+
+  function enterApp(){
+    $('login').style.display='none';
+    $('app').style.display='block';
+    stampSync(); render();
+  }
+  function stampSync(){ $('sync').textContent='최근 동기화 '+fmtDate(new Date().toISOString()); }
+
+  $('refresh').addEventListener('click',function(){
+    var pw=sessionStorage.getItem(KEY); if(!pw) return logout();
+    $('refresh').disabled=true; $('refresh').textContent='불러오는 중…';
+    load(pw).then(function(res){
+      $('refresh').disabled=false; $('refresh').textContent='새로고침';
+      if(res.status===200 && res.body.ok){ leads=res.body.leads; stampSync(); render(); }
+      else if(res.status===401){ logout(); }
+    }).catch(function(){
+      $('refresh').disabled=false; $('refresh').textContent='새로고침';
+    });
+  });
+
+  function logout(){
+    sessionStorage.removeItem(KEY);
+    leads=[]; $('app').style.display='none'; $('login').style.display='flex'; $('pw').value='';
+  }
+  $('logout').addEventListener('click',logout);
+
+  /* ---------- FILTER / SORT ---------- */
+  function applyFilters(){
+    var q=$('q').value.trim().toLowerCase(), t=$('fType').value, g=$('fGrade').value, p=$('fPeriod').value;
+    var from=p?daysAgo(+p):null;
+    view=leads.filter(function(r){
+      if(t && r.type!==t) return false;
+      if(g && r.child_grade!==g) return false;
+      if(from && new Date(r.created_at)<from) return false;
+      if(q){
+        var hay=[r.parent_name,r.phone,r.email,r.result_name,r.result_type,r.utm_source]
+          .join(' ').toLowerCase();
+        if(hay.indexOf(q)<0) return false;
+      }
+      return true;
+    });
+    view.sort(function(a,b){
+      var x=a[sortKey], y=b[sortKey];
+      if(x==null) return 1; if(y==null) return -1;
+      return x<y?-sortDir:x>y?sortDir:0;
+    });
+  }
+
+  document.querySelectorAll('th.sortable').forEach(function(th){
+    th.addEventListener('click',function(){
+      var k=th.getAttribute('data-sort');
+      if(sortKey===k) sortDir=-sortDir; else { sortKey=k; sortDir=-1; }
+      render();
+    });
+  });
+  ['q','fType','fGrade','fPeriod'].forEach(function(id){
+    $(id).addEventListener('input',render);
+    $(id).addEventListener('change',render);
+  });
+  $('reset').addEventListener('click',function(){
+    $('q').value=''; $('fType').value=''; $('fGrade').value=''; $('fPeriod').value=''; render();
+  });
+
+  /* ---------- RENDER ---------- */
+  function renderKpis(){
+    var today=daysAgo(1), week=daysAgo(7);
+    var diag=leads.filter(function(r){return r.type==='diagnostic';});
+    var mkt=diag.filter(function(r){return r.consent_marketing;}).length;
+    var kpis=[
+      ['전체 신청', leads.length, ''],
+      ['오늘', leads.filter(function(r){return new Date(r.created_at)>=today;}).length, ''],
+      ['최근 7일', leads.filter(function(r){return new Date(r.created_at)>=week;}).length, ''],
+      ['로드맵 진단', diag.length, ''],
+      ['마케팅 동의', mkt, diag.length?' <small>/ '+diag.length+'명</small>':'']
+    ];
+    $('kpis').innerHTML=kpis.map(function(k){
+      return '<div class="kpi"><div class="k">'+esc(k[0])+'</div><div class="v">'+k[1]+k[2]+'</div></div>';
+    }).join('');
+  }
+
+  function renderRows(){
+    if(!view.length){ $('rows').innerHTML=''; $('empty').style.display='block'; return; }
+    $('empty').style.display='none';
+    $('rows').innerHTML=view.map(function(r){
+      var s=r.scores||{};
+      var sc=AREAS.map(function(a){ return '<td>'+(s[a]==null?'-':s[a]+'점')+'</td>'; }).join('');
+      var isDiag=r.type==='diagnostic';
+      return '<tr data-id="'+esc(r.id)+'"'+(selId===r.id?' class="sel"':'')+'>'
+        +'<td>'+fmtDate(r.created_at)+'</td>'
+        +'<td><span class="badge '+(isDiag?'diag':'pdf')+'">'+(isDiag?'로드맵 진단':'요약본')+'</span></td>'
+        +'<td><b>'+esc(r.parent_name||r.email||'-')+'</b></td>'
+        +'<td class="phone">'+esc(fmtPhone(r.phone))+'</td>'
+        +'<td>'+esc(r.child_grade||'-')+'</td>'
+        +'<td>'+esc(r.result_name||'-')+'</td>'
+        +sc
+        +'<td><span class="badge '+(r.consent_marketing?'on':'off')+'">'+(r.consent_marketing?'동의':'미동의')+'</span></td>'
+        +'<td>'+esc(r.utm_source||'direct')+'</td>'
+        +'</tr>';
+    }).join('');
+    $('rows').querySelectorAll('tr').forEach(function(tr){
+      tr.addEventListener('click',function(){ openDetail(tr.getAttribute('data-id')); });
+    });
+  }
+
+  function render(){ applyFilters(); renderKpis(); renderRows(); }
+
+  /* ---------- DETAIL ---------- */
+  function openDetail(id){
+    var r=leads.filter(function(x){return String(x.id)===String(id);})[0];
+    if(!r) return;
+    selId=r.id;
+
+    var s=r.scores||{};
+    var gauges=AREAS.map(function(a){
+      var p=s[a]==null?0:s[a];
+      return '<div class="gauge"><div class="gtop"><b>'+esc(a)+'</b><span>'+(s[a]==null?'-':p+'점')+'</span></div>'
+        +'<div class="gbar"><i style="width:'+p+'%"></i></div></div>';
+    }).join('');
+
+    var answers=Array.isArray(r.answers)&&r.answers.length
+      ? r.answers.map(function(a){
+          return '<div class="qa"><div class="q"><b>Q'+esc(a.no)+'</b>'+esc(a.question)+'</div>'
+            +'<div class="a">'+esc(a.answer||'무응답')+'<span>'+esc(a.area||'')+(a.score!=null?' · '+a.score+'점':'')+'</span></div></div>';
+        }).join('')
+      : '<p style="color:var(--mute);font-size:13px;">저장된 문항 응답이 없습니다.</p>';
+
+    var info=[
+      ['신청일시',fmtDate(r.created_at)],
+      ['구분',r.type==='diagnostic'?'로드맵 진단':'요약본 신청'],
+      ['학부모 성함',r.parent_name||'-'],
+      ['휴대폰 번호',fmtPhone(r.phone)],
+      ['자녀 학년',r.child_grade||'-'],
+      ['이메일',r.email||'-'],
+      ['진단 유형',(r.result_name||'-')+(r.result_type?' ('+r.result_type+')':'')],
+      ['개인정보 동의',r.consent?'동의':'미동의'],
+      ['마케팅 수신',r.consent_marketing?'동의':'미동의']
+    ].map(function(x){ return '<div class="drow"><span class="l">'+esc(x[0])+'</span><span class="r">'+esc(x[1])+'</span></div>'; }).join('');
+
+    var src=[
+      ['유입 소스',r.utm_source||'direct'],['매체',r.utm_medium||'-'],['캠페인',r.utm_campaign||'-'],
+      ['유입 경로',r.referrer||'-'],['페이지',r.page_path||'-']
+    ].map(function(x){ return '<div class="drow"><span class="l">'+esc(x[0])+'</span><span class="r">'+esc(x[1])+'</span></div>'; }).join('');
+
+    $('dpanel').innerHTML='<button class="dclose" id="dclose" aria-label="닫기">&times;</button>'
+      +'<h2>'+esc(r.parent_name||r.email||'신청 상세')+'</h2>'
+      +'<p style="color:var(--mute);font-size:13px;">'+fmtDate(r.created_at)+'</p>'
+      +'<div class="dsec"><h3>기본 정보</h3>'+info+'</div>'
+      +(Object.keys(s).length?'<div class="dsec"><h3>영역별 점수</h3>'+gauges+'</div>':'')
+      +'<div class="dsec"><h3>12문항 응답</h3>'+answers+'</div>'
+      +'<div class="dsec"><h3>유입 정보</h3>'+src+'</div>';
+
+    $('drawer').classList.add('open');
+    $('dclose').addEventListener('click',closeDetail);
+    renderRows();
+  }
+  function closeDetail(){ $('drawer').classList.remove('open'); selId=null; renderRows(); }
+  $('drawer').addEventListener('click',function(e){ if(e.target===$('drawer')) closeDetail(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeDetail(); });
+
+  /* ---------- CSV ---------- */
+  $('csv').addEventListener('click',function(){
+    if(!view.length) return;
+    var head=['신청일시','구분','학부모성함','휴대폰번호','자녀학년','이메일','진단유형','진단코드']
+      .concat(AREAS).concat(['개인정보동의','마케팅동의','유입소스','매체','캠페인']);
+    for(var i=1;i<=12;i++) head.push('Q'+i);
+
+    var cell=function(v){ return '"'+String(v==null?'':v).replace(/"/g,'""')+'"'; };
+    var lines=[head.map(cell).join(',')];
+
+    view.forEach(function(r){
+      var s=r.scores||{}, a=Array.isArray(r.answers)?r.answers:[];
+      var row=[fmtDate(r.created_at), r.type==='diagnostic'?'로드맵 진단':'요약본',
+        r.parent_name, fmtPhone(r.phone), r.child_grade, r.email, r.result_name, r.result_type];
+      AREAS.forEach(function(k){ row.push(s[k]==null?'':s[k]); });
+      row.push(r.consent?'동의':'미동의', r.consent_marketing?'동의':'미동의',
+        r.utm_source||'direct', r.utm_medium, r.utm_campaign);
+      for(var i=0;i<12;i++){ row.push(a[i]?a[i].answer:''); }
+      lines.push(row.map(cell).join(','));
+    });
+
+    // BOM: 엑셀에서 한글이 깨지지 않도록
+    var blob=new Blob(['﻿'+lines.join('\r\n')],{type:'text/csv;charset=utf-8;'});
+    var url=URL.createObjectURL(blob), link=document.createElement('a');
+    var d=new Date(), p=function(n){return String(n).padStart(2,'0');};
+    link.href=url; link.download='harris-leads-'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'.csv';
+    link.click(); URL.revokeObjectURL(url);
+  });
+
+  /* ---------- BOOT ---------- */
+  var saved=sessionStorage.getItem(KEY);
+  if(saved){
+    load(saved).then(function(res){
+      if(res.status===200 && res.body.ok){ leads=res.body.leads; enterApp(); }
+      else sessionStorage.removeItem(KEY);
+    }).catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>

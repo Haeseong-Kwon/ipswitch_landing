@@ -933,6 +933,18 @@ footer{opacity:1;color:#555;}
     });
   }
 
+  function scorePercents(){
+    var s=areaScores(), o={};
+    AREAS.forEach(function(k){ o[k]=s[k][1]?Math.round(100*s[k][0]/s[k][1]):0; });
+    return o;
+  }
+  function answerList(){
+    return QUESTIONS.map(function(q,i){
+      var a=st.answers[i];
+      return {no:i+1,area:q.area,question:q.text,answer:a?a.label:null,score:a?q.opts[a.idx][1]:null};
+    });
+  }
+
   function utm(){
     var q=new URLSearchParams(location.search);
     return {utm_source:q.get('utm_source'),utm_medium:q.get('utm_medium'),utm_campaign:q.get('utm_campaign'),
@@ -946,7 +958,9 @@ footer{opacity:1;color:#555;}
     var payload=Object.assign({}, utm(), {
       type:'diagnostic', parent_name:st.name.trim(), phone:st.phone.trim(),
       child_grade:st.grade, consent:true, consent_marketing:st.consentMkt,
-      result_type:resultType(), company:company||''
+      result_type:resultType(), result_name:(TYPES[resultType()]||TYPES.LLS).name,
+      scores:scorePercents(), answers:answerList(),
+      company:company||''
     });
     fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
       .then(function(r){return r.json();})
