@@ -1005,7 +1005,7 @@ footer{opacity:1;color:#555;}
     el.addEventListener('click',function(e){ e.preventDefault(); open(); });
   });
 
-  // 요약본 받기: 이메일을 먼저 저장(진단을 중도 이탈해도 리드는 남는다)한 뒤 진단 창을 연다.
+  // 요약본 받기: 이메일을 진단 창으로 넘긴다. 저장은 진단 제출 시 한 번만 일어난다.
   var sumBtn=document.getElementById('sumSubmit');
   if(sumBtn) sumBtn.addEventListener('click',function(e){
     e.preventDefault();
@@ -1015,9 +1015,6 @@ footer{opacity:1;color:#555;}
       status.textContent='이메일 주소를 확인해 주세요.'; status.style.color='#3D6FBF'; return;
     }
     status.textContent='';
-    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(Object.assign({}, utm(), {type:'summary_pdf', email:email.trim(),
-        company:(document.getElementById('hp2')||{}).value||''}))}).catch(function(){});
     open(email.trim());
   });
   document.getElementById('hq-close').addEventListener('click',close);
