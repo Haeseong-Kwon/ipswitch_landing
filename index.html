@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Harris Prep · 입스위치 단기유학 — 캠프 3주로 열린 문, 10주로 완성하세요</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Harris Prep · 입스위치 단기유학 — 우리 아이가 적응하는 사이, 그 아이는 이미 배움에 몰입합니다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+KR:wght@500;600;700&family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@latest/dist/web/static/pretendard.min.css">
 <style>
 :root{
   --red:#3D6FBF; --navy:#1F3864; --pale:#C9D6EA; --pale-l:#EDF2F9;
   --charcoal:#2C2C2C; --gray:#F5F4F2; --gray-m:#E8E6E2; --gray-d:#9AA3AD; --white:#FFFFFF;
   --accent:#1F3864;
-  --serif:'Noto Serif KR',serif; --sans:'Pretendard Variable',Pretendard,sans-serif; --num:'Pretendard Variable',Pretendard,sans-serif;
+  --serif:'Cormorant Garamond',serif; --sans:'Montserrat',sans-serif; --num:'Inter',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -33,20 +35,6 @@ a{color:inherit;}
 .btn-pale{background:var(--pale);color:var(--navy);}
 .btn-pale:hover{background:#b3c5e2;}
 .btn .arw{font-family:var(--num);font-weight:400;}
-
-/* ---------- CONSENT ---------- */
-.consent{display:flex;flex-direction:column;gap:.55rem;margin:1rem 0 1.1rem;}
-.ck{display:flex;gap:.55rem;align-items:flex-start;font-size:.85rem;line-height:1.55;color:var(--charcoal);cursor:pointer;}
-.ck input{margin-top:.2rem;width:16px;height:16px;accent-color:var(--navy);flex:none;}
-.ck b{color:var(--navy);}
-.ck-more{font-size:.78rem;color:var(--accent);text-decoration:underline;margin-left:.4rem;}
-.privacy-detail{display:none;background:var(--gray);border:1px solid var(--gray-m);border-radius:3px;padding: .8rem 1rem;font-size:.78rem;line-height:1.7;color:var(--charcoal);}
-.privacy-detail.open{display:block;}
-.form-ok{background:var(--pale-l);border:1px solid var(--navy);border-radius:4px;padding:1.6rem;text-align:center;}
-.form-ok h4{font-family:var(--serif);color:var(--navy);font-size:1.3rem;margin-bottom:.5rem;}
-.form-ok p{font-size:.92rem;line-height:1.7;}
-.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;}
-.form-status{font-size:.85rem;margin-top:.7rem;line-height:1.5;min-height:1.2em;}
 
 /* ---------- NAV ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);
@@ -208,7 +196,7 @@ section{padding:6.5rem 0;border-bottom:1px solid var(--gray-m);}
 .field input:focus,.field select:focus{outline:none;border-color:var(--accent);}
 .form-card .btn{width:100%;justify-content:center;margin-top:.4rem;}
 .form-note{font-size:.78rem;color:var(--gray-d);margin-top:.9rem;line-height:1.5;text-align:center;}
-.urgency{display:inline-flex;align-items:center;gap:.5rem;background:rgba(155,28,46,.12);border:1px solid rgba(184,212,232,.3);
+.urgency{display:inline-flex;align-items:center;gap:.5rem;background:rgba(61,111,191,.12);border:1px solid rgba(184,212,232,.3);
   color:var(--pale);font-size:.82rem;font-weight:600;padding:.5rem .9rem;border-radius:2px;margin-bottom:1.4rem;}
 .urgency .dot{width:7px;height:7px;border-radius:50%;background:var(--red);}
 @media(max-width:820px){.apply-grid{grid-template-columns:1fr;gap:2rem;}}
@@ -309,6 +297,63 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
 .sn.tier-elite{color:var(--red);}
 .sn.tier-a{color:var(--accent);}
 .sn.tier-b{color:var(--gray-d);}
+
+/* ==================================================================
+   READABILITY & TYPE REFINEMENT  (Korean-first)
+   - 구성/카피/색은 그대로. 한글 폰트 폴백 문제 해결 + 대비·행간·자간 정리.
+   - 규칙을 삭제하지 않고 마지막에 오버라이드하여 안전하게 정렬.
+================================================================== */
+:root{
+  /* 헤드라인: 영문=Cormorant, 한글=Noto Serif KR (실제 세리프로 렌더) */
+  --serif:'Cormorant Garamond','Noto Serif KR',serif;
+  /* 본문: 한글·영문 모두 Pretendard 우선 → 폴백 제거, 균일한 고급 산세리프 */
+  --sans:'Pretendard','Montserrat',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',system-ui,sans-serif;
+  --num:'Inter','Pretendard',sans-serif;
+}
+body{font-size:17px;line-height:1.82;letter-spacing:-.003em;text-rendering:optimizeLegibility;}
+
+/* 헤드라인: 한글 세리프에 충분한 무게 + 균형 잡힌 줄바꿈 */
+.hero-h1,.h2{font-weight:500;letter-spacing:-.015em;text-wrap:balance;}
+.hero-h1{line-height:1.14;}
+.h2{line-height:1.28;}
+.hero-h1 em,.h2 em{font-weight:500;}
+.punch{font-weight:500;text-wrap:balance;line-height:1.55;}
+
+/* 서브 타이틀/카드 제목 위계 강화 */
+.col h4,.step h4,.course h4,.mag-card h4,.form-card h3,.seq-node h5,.school b,.faq summary,.note-mock .nm-t{font-weight:600;}
+
+/* 본문 문단: 한글 줄바꿈 개선 + 대비 상향 */
+.sub,.hero-sub,.faq p,.proof-list li,.apply-points li,.course li,.col li,.step p,.mag-card p{text-wrap:pretty;}
+.sub,.hero-sub{color:#333;line-height:1.9;}
+.sub b,.hero-sub b{color:var(--navy);font-weight:700;}
+
+/* 저대비(opacity로 흐려진) 텍스트를 접근성 수준으로 끌어올림 */
+.hero-eyebrow{opacity:1;color:#5a5a5a;}
+.eye{font-weight:700;}
+.tr span{opacity:1;color:#555;}
+.tr b{font-weight:600;}
+.cap{color:#6b7480;}
+.school .sdesc{opacity:1;color:#555;}
+.school .sen{color:#7a828c;}
+.course .tag{opacity:1;color:#666;}
+.wk-c .wk-tx{opacity:1;color:#444;}
+.seq-node p{opacity:1;color:#555;}
+.faq p{color:#3a3a3a;}
+footer{opacity:1;color:#555;}
+.form-card .fh{opacity:1;color:#666;}
+
+/* 폼 필드 가독성 */
+.field label{font-size:.82rem;}
+.field input,.field select,.mag-form input{font-family:var(--sans);font-size:.98rem;}
+.field input::placeholder,.mag-form input::placeholder{color:#9aa3ad;}
+
+/* 숫자·라벨은 Inter 유지가 명확하도록 */
+.f-num,.tr b,.wk-head .wk-c,.seq-node .circ{font-family:var(--num);}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;}
+.form-status{font-size:.85rem;margin-top:.7rem;line-height:1.5;min-height:1.2em;}
+.consent{display:flex;align-items:flex-start;gap:.5rem;font-size:.82rem;color:#555;margin:.2rem 0 1rem;line-height:1.5;cursor:pointer;}
+.consent input{margin-top:.2rem;}
+.mag-consent{font-size:.75rem;color:#666;margin-top:.5rem;display:flex;gap:.4rem;align-items:flex-start;}
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
@@ -329,17 +374,17 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
     <div class="hero-grid">
       <div>
         <p class="hero-eyebrow">입스위치 단기유학 · Harris Prep Flagship</p>
-        <h1 class="hero-h1">캠프 3주로 열린 문,<br><em>10주로 완성하세요.</em></h1>
-        <p class="hero-sub">캠프 2~3주의 몰입은 <b>시작</b>입니다.<br>
-        캠프에서 열린 발화의 문이 닫히기 전에 &mdash; <b>호주 명문 사립 정규 수업 10주</b>가
-        그 몰입을 우리 아이의 실력으로 굳힙니다.</p>
+        <h1 class="hero-h1">우리 아이가 적응하는 사이,<br><em>그 아이는 이미 배움에 몰입합니다.</em></h1>
+        <p class="hero-sub">국내 명문 캠프 입소날.<br>
+        어머니는 아이의 적응을 응원하며 카탈로그를 받아 듭니다. 그런데 같은 날, <b>그 아이</b>는 이미
+        <b>호주 명문 사립에서 2달 반을 생활하고 공부하며 &lsquo;엑셀(excel)&rsquo;한 뒤</b> 이 캠프에 들어섭니다.</p>
         <div class="hero-ctas">
           <a href="#apply" class="btn btn-primary js-open-quiz">무료 로드맵 진단 시작 <span class="arw">&rarr;</span></a>
-          <a href="#ipswich" class="btn btn-ghost">10주 프로그램 보기</a>
+          <a href="#ipswich" class="btn btn-ghost">그 아이가 다녀온 길</a>
         </div>
         <div class="hero-trust">
           <div class="tr"><b>1863</b><span>호주 명문 사립 정규 수업</span></div>
-          <div class="tr"><b>10주</b><span>1개 Term 정규 수업 몰입</span></div>
+          <div class="tr"><b>2.5개월</b><span>초격차 단기유학 1개 Term</span></div>
           <div class="tr"><b>12개교</b><span>명문 사립 네트워크</span></div>
         </div>
       </div>
@@ -349,9 +394,9 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
           <path d="M150,150 C210,150 235,70 350,55" fill="none" stroke-width="3.5" class="dv-path-up"/>
           <path d="M150,150 C210,150 235,232 350,250" fill="none" stroke-width="2.5" class="dv-path-down"/>
           <circle cx="150" cy="150" r="7" class="dv-node"/>
-          <text x="8" y="140" class="dv-lab-dim">캠프 2~3주의 몰입</text>
-          <text x="232" y="42" class="dv-lab">10주로 굳힌 실력</text>
-          <text x="200" y="272" class="dv-lab-dim">한 달이면 사라지는 몰입</text>
+          <text x="8" y="140" class="dv-lab-dim">같은 날, 같은 캠프 입소</text>
+          <text x="232" y="42" class="dv-lab">선두에서 달린다</text>
+          <text x="200" y="272" class="dv-lab-dim">적응부터 시작한다</text>
         </svg>
       </div>
     </div>
@@ -361,62 +406,63 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
 <!-- SCENE : two children, same door -->
 <section id="scene">
   <div class="wrap">
-    <span class="eye reveal">캠프가 끝난 뒤, 한 달</span>
-    <h2 class="h2 reveal d1">캠프의 몰입은<br><em>왜 한 달이면 사라질까요.</em></h2>
-    <p class="sub reveal d2">아이가 부족해서가 아닙니다. 2~3주 몰입으로 열린 발화 회로가, 돌아온 일상(문법·독해 중심)에서 <b>다시 닫히는 구조</b>이기 때문입니다.</p>
+    <span class="eye reveal">입소일, 같은 문을 들어서는 두 아이</span>
+    <h2 class="h2 reveal d1">같은 캠프에 입소하지만,<br><em>출발선이 다릅니다.</em></h2>
+    <p class="sub reveal d2">우리 아이가 부족해서가 아닙니다. 두 아이가 <b>밟아 온 순서</b>가 달랐을 뿐입니다.</p>
 
     <div class="split">
-      <div class="col lose reveal d1">
-        <h4>캠프만 다녀온 경우</h4>
+      <div class="col reveal d1">
+        <h4>지금, 우리 아이</h4>
         <ul>
-          <li>귀국 첫 주, 영어로 말하던 습관이 줄어든다</li>
-          <li>학원 문법·독해 루틴으로 복귀한다</li>
-          <li>한 달 뒤, 캠프 전과 비슷한 일상이 된다</li>
-          <li>캠프는 &lsquo;좋은 경험&rsquo;으로만 남는다</li>
+          <li>설렘 반, 걱정 반으로 입소한다</li>
+          <li>낯선 환경과 영어에 &lsquo;적응&rsquo;하는 것부터 시작</li>
+          <li>첫 주는 긴장 속에 흘러간다</li>
+          <li>캠프가 특목고를 미리 맛보는 첫 경험이다</li>
         </ul>
       </div>
       <div class="col win reveal d2">
-        <h4>캠프 &rarr; 10주로 이어간 경우</h4>
+        <h4>같은 날 입소한 그 아이</h4>
         <ul>
-          <li>캠프에서 열린 입을, 현지 정규 수업에서 매일 쓴다</li>
-          <li>발표와 에세이가 습관이 된다</li>
-          <li>귀국 후 레벨테스트로 결과를 확인한다</li>
-          <li>&lsquo;경험&rsquo;이 &lsquo;실력&rsquo;으로 남는다</li>
+          <li>이미 호주 명문 사립에서 2달 반을 보냈다</li>
+          <li>현지 수업·발표·에세이를 마치고 왔다</li>
+          <li>첫날부터 여유와 자신감이 다르다</li>
+          <li>이 캠프는 &lsquo;미니 체험&rsquo;일 뿐, 복습에 가깝다</li>
         </ul>
       </div>
     </div>
-    <p class="punch reveal d2">차이는 아이가 아니라,<br><b>몰입을 이어 붙였는가</b>였습니다.</p>
+    <p class="punch reveal d2">차이는 아이가 아니라,<br>아이가 <b>먼저 밟은 길</b>이었습니다.</p>
   </div>
 </section>
 
 <!-- GAP : one adapts a week, the other leads -->
 <section id="gap">
   <div class="wrap">
-    <span class="eye reveal">캠프 3주의 곡선</span>
-    <h2 class="h2 reveal d1">캠프 3주,<br><em>막 편해질 때 끝납니다.</em></h2>
-    <p class="sub reveal d2">3주는 몰입이 <b>막 자라기 시작하는</b> 길이입니다. 10주 정규 수업은 그 몰입이 &lsquo;영어로 사고하는 회로&rsquo;와 습관으로 굳을 시간을 줍니다.</p>
+    <span class="eye reveal">첫 주, 무슨 일이 벌어지나</span>
+    <h2 class="h2 reveal d1">한 아이가 적응하는 1주,<br><em>그 아이는 선두에서 달립니다.</em></h2>
+    <p class="sub reveal d2">2달 반의 해외 명문 사립 생활은 아이에게 &lsquo;영어로 사고하는 회로&rsquo;와
+    <b>글로벌 리더십, 흔들리지 않는 자신감</b>을 남깁니다. 그 아이는 국내 캠프에서 적응할 것이 없습니다.</p>
 
     <div class="wk reveal d2">
       <div class="wk-row wk-head">
         <div class="wk-c wk-lbl">&nbsp;</div>
-        <div class="wk-c">시작</div>
-        <div class="wk-c">중반</div>
-        <div class="wk-c">마지막</div>
+        <div class="wk-c">WEEK 1</div>
+        <div class="wk-c">WEEK 2</div>
+        <div class="wk-c">WEEK 3</div>
       </div>
       <div class="wk-row wk-ours">
-        <div class="wk-lbl">캠프 3주</div>
+        <div class="wk-lbl">지금, 우리 아이</div>
         <div class="wk-c"><div class="wk-bar"><i style="width:28%"></i></div><span class="wk-st">적응</span><span class="wk-tx">낯선 환경·영어에 긴장. 관찰하며 눈치를 본다.</span></div>
         <div class="wk-c"><div class="wk-bar"><i style="width:52%"></i></div><span class="wk-st">참여 시작</span><span class="wk-tx">조금씩 입을 연다. 이제야 손을 들기 시작.</span></div>
         <div class="wk-c"><div class="wk-bar"><i style="width:70%"></i></div><span class="wk-st">익숙해질 무렵</span><span class="wk-tx">막 편해졌는데 &mdash; 캠프가 끝난다.</span></div>
       </div>
       <div class="wk-row wk-theirs">
-        <div class="wk-lbl">이어간 10주</div>
-        <div class="wk-c"><div class="wk-bar"><i style="width:80%"></i></div><span class="wk-st">시작</span><span class="wk-tx">캠프에서 열린 입으로, 현지 정규 수업에 들어간다.</span></div>
-        <div class="wk-c"><div class="wk-bar"><i style="width:92%"></i></div><span class="wk-st">중반</span><span class="wk-tx">발표와 에세이가 일상이 된다. 몰입이 습관으로.</span></div>
-        <div class="wk-c"><div class="wk-bar"><i style="width:100%"></i></div><span class="wk-st">마무리</span><span class="wk-tx">성장 리포트와 함께 귀국 &mdash; 레벨테스트로 검증한다.</span></div>
+        <div class="wk-lbl">그 아이</div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:80%"></i></div><span class="wk-st">선두 출발</span><span class="wk-tx">첫날부터 영어로 발표·토론을 주도한다.</span></div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:92%"></i></div><span class="wk-st">팀을 이끈다</span><span class="wk-tx">자신감으로 조를 리딩. 프로그램을 끌고 간다.</span></div>
+        <div class="wk-c"><div class="wk-bar"><i style="width:100%"></i></div><span class="wk-st">최상위 마무리</span><span class="wk-tx">글로벌 리더십으로 프로그램 정상에서 끝낸다.</span></div>
       </div>
     </div>
-    <p class="punch reveal d2">3주가 끝나는 그 지점에서, <b>10주는 시작합니다.</b></p>
+    <p class="punch reveal d2">같은 3주, 시작이 아니라 <b>도착점</b>이 다릅니다.</p>
   </div>
 </section>
 
@@ -424,14 +470,14 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
 <section id="turn">
   <div class="wrap">
     <span class="eye reveal">그래서, 지금</span>
-    <h2 class="h2 reveal d1">캠프를 마친 지금이<br><em>이어 붙일 타이밍입니다.</em></h2>
-    <p class="sub reveal d2">몰입을 잇는 순서는 타고나는 것이 아니라 <b>설계되는 것</b>입니다.
+    <h2 class="h2 reveal d1">지금이라도<br><em>늦지 않았습니다.</em></h2>
+    <p class="sub reveal d2">&lsquo;다른 출발선&rsquo;은 타고나는 것이 아니라 <b>설계되는 것</b>입니다.
     그 순서를 설계하는 곳이 Harris Prep입니다.</p>
     <div class="card navy reveal">
       <span class="card-eye">Harris Prep — 초격차 로드맵 아키텍트</span>
       <p><b>입시·영어교육 25년, 초격차 로드맵 아키텍트</b>가 아이를 진단하고,
-      캠프 이후 10주 해외 몰입부터 귀국 후 특목·국제 로드맵까지 <b>순서 전체를 직접 설계</b>합니다.
-      캠프가 끝나는 지금이, 가장 빠른 시작입니다.</p>
+      해외 명문 사립 단기유학부터 귀국 후 특목·국제 로드맵까지 <b>순서 전체를 직접 설계</b>합니다.
+      늦었다고 느낀 지금이, 그 아이와 같은 출발선에 서는 가장 빠른 시작입니다.</p>
     </div>
     <div class="hero-ctas" style="margin-top:2rem;">
       <a href="#apply" class="btn btn-primary js-open-quiz">무료 로드맵 진단 시작 <span class="arw">&rarr;</span></a>
@@ -443,15 +489,15 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
 <!-- IPSWICH : the flagship -->
 <section id="ipswich">
   <div class="wrap">
-    <span class="eye reveal">The Flagship · 대표 프로그램</span>
-    <h2 class="h2 reveal d1">캠프 다음 10주,<br><em>입스위치 그래머.</em></h2>
+    <span class="eye reveal">The Flagship · 초격차 티어 0</span>
+    <h2 class="h2 reveal d1">그 아이가 다녀온 곳,<br><em>입스위치 그래머.</em></h2>
     <p class="sub reveal d2">1863년 설립된 호주 명문 사립. 관광·체험 캠프가 아니라
-    <b>실제 정규 수업(10주 · 1개 Term)</b>에 우리 아이가 현지 학생으로 들어갑니다. 근본이 다릅니다.</p>
+    <b>실제 정규 수업(2.5개월 · 1개 Term)</b>에 우리 아이가 현지 학생으로 들어갑니다. 근본이 다릅니다.</p>
 
     <table class="ct reveal d2">
       <tr><th>구분</th><th>일반 어학 캠프</th><th>입스위치 단기유학</th></tr>
       <tr><td>수업</td><td class="lose">캠프용 특별 프로그램</td><td><b>명문 사립 정규 수업 참여</b></td></tr>
-      <tr><td>기간</td><td class="lose">1~3주 체험</td><td><b>10주 · 1개 Term 몰입</b></td></tr>
+      <tr><td>기간</td><td class="lose">1~3주 체험</td><td><b>2.5개월 · 1개 Term 몰입</b></td></tr>
       <tr><td>또래</td><td class="lose">같은 한국 학생들</td><td>현지 학생들과 나란히</td></tr>
       <tr><td>관리</td><td class="lose">인솔 교사</td><td><b>로드맵 아키텍트 현지 상주 · 24시간 케어</b></td></tr>
       <tr><td>귀국 시 실물</td><td class="lose">추억·사진</td><td><b>캠프 성공 시크릿 노트 + 성장 리포트</b></td></tr>
@@ -570,7 +616,7 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
     <span class="eye reveal">캠프 성공 시크릿 노트</span>
     <h2 class="h2 reveal d1">우리 아이,<br><em>캠프 준비 잘 하셨나요?</em></h2>
     <p class="sub reveal d2">캠프에서 성공하는 아이는 <b>노트를 끝까지 채운 아이</b>였습니다.
-    Harris Prep이 캠프에서 성공한 아이들의 하루를 분석해 만든 것이 <b>&lsquo;캠프 성공 시크릿 노트&rsquo;</b>입니다.
+    Harris Prep이 그 아이들의 하루를 분석해 만든 것이 <b>&lsquo;캠프 성공 시크릿 노트&rsquo;</b>입니다.
     입스위치를 다녀온 아이는 이 노트를 손에 쥐고 돌아옵니다.</p>
     <div class="proof-grid">
       <div class="note-mock reveal d1">
@@ -584,7 +630,7 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
       </div>
       <div>
         <ul class="proof-list reveal d2">
-          <li><b>이 노트가 &lsquo;다녀왔다&rsquo;는 가장 확실한 증거</b>입니다. 매일 채운 손글씨가 아이의 10주을 증명합니다.</li>
+          <li><b>이 노트가 &lsquo;다녀왔다&rsquo;는 가장 확실한 증거</b>입니다. 매일 채운 손글씨가 아이의 2.5개월을 증명합니다.</li>
           <li><b>심화 토론 트랙.</b> &ldquo;동물원은 필요한가&rdquo; 같은 주제에 영어로 입장을 세우고 반박까지 &mdash; 영미권 고교 수준.</li>
           <li><b>전/후 에세이.</b> 같은 주제를 처음과 끝에 써서, 성장을 &lsquo;눈으로&rsquo; 보여줍니다.</li>
           <li><b>노트를 덮는 순간, 다음 트랙이 시작됩니다.</b> 귀국 후 로드맵 진단으로 이어집니다.</li>
@@ -609,7 +655,7 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
         <h4>시크릿 노트 <b>전권</b></h4>
         <p>무료 로드맵 진단·상담을 신청하신 학부모님께는 <b>시크릿 노트 전권</b>을 드립니다.
         아이의 캠프 준비를 오늘부터 시작하세요.</p>
-        <a href="#apply" class="btn btn-primary js-open-quiz">무료 진단 신청하고 노트 받기 <span class="arw">&rarr;</span></a>
+        <a href="#apply" class="btn btn-primary">무료 진단 신청하고 노트 받기 <span class="arw">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -619,9 +665,9 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
 <section id="order">
   <div class="wrap">
     <span class="eye reveal">우리 아이의 순서</span>
-    <h2 class="h2 reveal d1">집에서 시작하고,<br><em>세계에서 완성합니다.</em></h2>
-    <p class="sub reveal d2">캠프는 문을 여는 경험입니다. Harris Prep은 그 문 너머의 <b>순서</b>를 설계합니다.
-    집에서 준비하고, 세계에서 체화하고, 입시로 완성합니다.</p>
+    <h2 class="h2 reveal d1">세계에서 먼저 단련하고,<br><em>앞선 자리에서 출발합니다.</em></h2>
+    <p class="sub reveal d2">그 아이가 앞선 이유는 단순합니다 &mdash; <b>입스위치를 먼저 다녀왔기 때문</b>입니다.
+    해외에서 먼저 단련하고 국내 무대에 앞서 서는 이 순서가, 출발선 자체를 바꿉니다.</p>
     <div class="seq reveal d2">
       <div class="seq-node">
         <div class="circ">1</div><span class="tag">&nbsp;</span>
@@ -629,19 +675,19 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
       </div>
       <div class="seq-node hl">
         <div class="circ">2</div><span class="tag">해외 몰입</span>
-        <h5>입스위치 10주</h5><p>명문 사립 정규 수업 몰입</p>
+        <h5>입스위치</h5><p>2.5개월 명문 사립 정규 수업 몰입</p>
       </div>
       <div class="seq-node">
         <div class="circ">3</div><span class="tag">&nbsp;</span>
         <h5>증빙</h5><p>캠프 성공 시크릿 노트 + 성장 리포트</p>
       </div>
       <div class="seq-node hl">
-        <div class="circ">4</div><span class="tag">결과 확인</span>
-        <h5>레벨테스트</h5><p>귀국 후 성장을 수치로 검증</p>
+        <div class="circ">4</div><span class="tag">선두 착지</span>
+        <h5>선두 입소</h5><p>국내 명문 캠프에 선두로 착지</p>
       </div>
       <div class="seq-node">
         <div class="circ">5</div><span class="tag">&nbsp;</span>
-        <h5>입시 완성</h5><p>마스터클래스 &mdash; 특목·국제 트랙</p>
+        <h5>도약</h5><p>특목·국제·해외 대학 트랙 진입</p>
       </div>
     </div>
   </div>
@@ -654,23 +700,23 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
     <h2 class="h2 reveal d1">걱정, 그대로<br><em>설계에 반영했습니다.</em></h2>
     <div class="faq reveal d2">
       <details>
-        <summary>아이가 지금 캠프 중인데, 언제 시작하면 되나요?</summary>
-        <p>캠프 종료 후 4~6주가 몰입을 이어 붙일 골든타임입니다. 지금 진단을 신청해 두시면, 퇴소 시점에 맞춰 다음 텀 일정을 안내드립니다.
-        캠프에서 열린 몰입을 10주로 이어 붙이면, 경험이 실력으로 남습니다.</p>
+        <summary>이미 캠프를 신청했는데, 지금 시작해도 되나요?</summary>
+        <p>늦지 않았습니다. 이번 캠프는 &lsquo;미니 체험&rsquo;으로 두고, 다음 사이클을 위해 지금 진단부터 시작하면 됩니다.
+        입스위치를 먼저 다녀온 뒤 국내 캠프에 다시 서면, 아이의 출발선 자체가 달라집니다.</p>
       </details>
       <details>
-        <summary>케어만 받던 우리 아이가 10주을 견딜까요?</summary>
+        <summary>케어만 받던 우리 아이가 2.5개월을 견딜까요?</summary>
         <p>로드맵 아키텍트가 현지에 상주하며 기상부터 취침, 저녁 화상 미팅까지 24시간 관리합니다.
         아이는 &ldquo;혼자 견딜까&rdquo;가 아니라 &ldquo;혼자서도 해냈다&rdquo;는 자신감을 안고 돌아옵니다.</p>
       </details>
       <details>
-        <summary>10주이나 빠지면 한국 학습에 결손이 생기지 않나요?</summary>
+        <summary>2.5개월이나 빠지면 한국 학습에 결손이 생기지 않나요?</summary>
         <p>저녁마다 한국 수학·과학 학습을 이어갑니다. 정규 수업(주간) + 학업 영어(오후) + 한국 학습(저녁)의
         밸런스를 로드맵 아키텍트가 직접 설계·감리해, 영어를 얻으면서 주요 과목 공백을 막습니다.</p>
       </details>
       <details>
         <summary>우리 아이 레벨과 어느 학교가 맞을까요?</summary>
-        <p>그것을 정하는 것이 <b>무료 로드맵 진단</b>입니다. 영어 레벨과 성향을 진단해 12개 명문 사립 중
+        <p>그것을 정하는 것이 <b>무료 로드맵 진단</b>입니다. SR 스코어와 성향을 진단해 12개 명문 사립 중
         아이에게 맞는 학교를 매칭합니다. 진단 없이 시작하지 않습니다.</p>
       </details>
       <details>
@@ -694,7 +740,7 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
         진단은 무료이며, <b>입시·영어교육 25년, 초격차 로드맵 아키텍트</b>가 결과를 바탕으로
         학교 매칭과 다음 단계를 직접 안내합니다.</p>
         <ul class="apply-points reveal d2">
-          <li><b>영어 레벨·성향 진단</b> — 아이의 현재 좌표와 목표 트랙</li>
+          <li><b>SR 스코어·성향 진단</b> — 아이의 현재 좌표와 목표 트랙</li>
           <li><b>학교 매칭</b> — 12개 명문 사립 중 최적교 추천</li>
           <li><b>로드맵 아키텍트 1:1 상담</b> — 진단 해설 + 순서 설계</li>
           <li><b>캠프 성공 시크릿 노트 전권 증정</b> — 상담 신청 학부모님께</li>
@@ -703,7 +749,8 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
       <div class="form-card reveal d2">
         <div class="urgency"><span class="dot"></span>로드맵 아키텍트 직접 인솔 · 7명 한정</div>
         <h3>무료 로드맵 진단 신청</h3>
-        <p class="fh">1분이면 신청됩니다. <b>시크릿 노트 전권</b>을 함께 보내드립니다.</p>
+        <p class="fh">3분 진단으로 <b>특목 트랙 기준 우리 아이 영어 위치</b>를 확인하세요.
+        진단 후 성함·연락처만 남기시면 <b>상세 리포트</b>를 보내드립니다.</p>
         <a href="#" class="btn btn-primary js-open-quiz" style="width:100%;justify-content:center;">무료 로드맵 진단 시작 &rarr;</a>
         <p class="form-note">진단·상담 목적 외 사용하지 않습니다.</p>
       </div>
@@ -714,7 +761,7 @@ footer{background:var(--white);padding:3rem 0;font-size:.85rem;color:var(--charc
 <footer>
   <div class="wrap foot-grid">
     <span class="foot-brand">Harris Prep · Ipswich Short Stay</span>
-    <span>로드맵 아키텍트 직통 상담 010-3790-8220 · 카카오채널 [ @harrisprep ] · © 2026 Harris Prep</span>
+    <span>로드맵 아키텍트 직통 상담 [연락처] · 카카오채널 [입력] · © 2026 Harris Prep</span>
   </div>
 </footer>
 
@@ -965,12 +1012,12 @@ document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
       body:JSON.stringify(Object.assign({}, attr, payload))})
       .then(function(r){return r.json();})
       .then(function(d){
-        if(d.ok){ statusEl.textContent = okMsg; statusEl.style.color='#0C2340'; }
+        if(d.ok){ statusEl.textContent = okMsg; statusEl.style.color='#1F3864'; }
         else { statusEl.textContent = d.error || '오류가 발생했습니다. 다시 시도해 주세요.';
-               statusEl.style.color='#9B1C2E'; btn.textContent=orig; btn.style.pointerEvents=''; }
+               statusEl.style.color='#3D6FBF'; btn.textContent=orig; btn.style.pointerEvents=''; }
       })
       .catch(function(){ statusEl.textContent='네트워크 오류입니다. 잠시 후 다시 시도해 주세요.';
-        statusEl.style.color='#9B1C2E'; btn.textContent=orig; btn.style.pointerEvents=''; });
+        statusEl.style.color='#3D6FBF'; btn.textContent=orig; btn.style.pointerEvents=''; });
   }
   var ss = document.getElementById('sumSubmit');
   if(ss) ss.addEventListener('click', function(e){ e.preventDefault();
@@ -980,6 +1027,5 @@ document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
   });
 })();
 </script>
-
 </body>
 </html>
